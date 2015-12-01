@@ -1,0 +1,36 @@
+@import '../variables.less'; // Можно удалять, это только для удобства написания кода.
+
+
+
+table {
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: @type-spacer;
+  border-collapse: collapse;
+  border: 1px solid @color__gray-light;
+}
+
+
+// caption {
+//   padding-top: .2em;
+//   color: @text-color;
+//   text-align: left;
+//   caption-side: bottom;
+// }
+
+
+td,
+th {
+  padding: (@spacer / 2);
+  vertical-align: top;
+  text-align: left;
+  line-height: @line-height;
+  border: 1px solid @color__gray-light;
+}
+
+
+// .table-responsive {
+//   width: 100%;
+//   overflow-x: auto;
+//   -ms-overflow-style: -ms-autohiding-scrollbar;
+// }

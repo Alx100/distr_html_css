@@ -32,7 +32,7 @@ module.exports = function(grunt) {
 
     autoprefixer: {
       options: {
-        browsers: ['last 2 versions', 'ie 9'],
+        browsers: ['last 2 versions', 'ie 11'],
         map: true,
       },
       style: {
@@ -87,28 +87,6 @@ module.exports = function(grunt) {
 
 
 
-    sprite:{
-      sprite_large: {
-        src: 'src/img/sprite-2x/*.png',
-        dest: 'build/img/sprite-2x.png',
-        padding: 8,
-        imgPath: '../img/sprite-2x.png',
-        destCss: 'src/less/components/sprite-2x.less', 
-        'cssVarMap': function (sprite) {
-          sprite.name = sprite.name + '-2x';
-        },
-      },
-      sprite: {
-        src: 'src/img/sprite/*.png',
-        dest: 'build/img/sprite-1x.png',
-        padding: 4,
-        imgPath: '../img/sprite-1x.png',
-        destCss: 'src/less/components/sprite-1x.less',
-      }
-    },
-
-
-
     imagemin: {
       build: {
         options: {
@@ -150,10 +128,10 @@ module.exports = function(grunt) {
 
     clean: {
       build: [
-        'build/css', 
-        'build/img', 
-        'build/js', 
-        'build/*.html', 
+        'build/css',
+        'build/img',
+        'build/js',
+        'build/*.html',
       ]
     },
 
@@ -176,12 +154,6 @@ module.exports = function(grunt) {
         src: ['build/css/style.css'],
         dest: 'build/css/style.min.css',
       },
-      css_add: {
-        expand: true,
-        cwd: 'src/less/css/',
-        src: ['*.css'],
-        dest: 'build/css/',
-      }
       // fonts: {
       //   expand: true,
       //   cwd: 'src/font/',
@@ -194,9 +166,9 @@ module.exports = function(grunt) {
 
     includereplace: {
       html: {
-        src: '*.html', 
-        dest: 'build/', 
-        expand: true, 
+        src: '*.html',
+        dest: 'build/',
+        expand: true,
         cwd: 'src/'
       }
     },
@@ -270,8 +242,6 @@ module.exports = function(grunt) {
 
 
   grunt.registerTask('default', [
-    'sprite',                 // собираем спрайты в build/img/sprite-1x.png и build/img/sprite-2x.png и записываем для них less-файлы
-    'copy:css_add',           // копируем дополнительные CSS-файлы из src/less/css/ в build/css/
     'less',                   // компилируем стили в          build/css/style.css
     'autoprefixer',           // обрабатываем автопрефиксером build/css/style.css
     'copy:css_min',           // создаем                      build/css/style.min.css
@@ -283,7 +253,7 @@ module.exports = function(grunt) {
     'copy:img',               // копируем всё из src/img/ в build/img/
     // 'copy:fonts',             // копируем всё из src/font/ в build/font/
     'imagemin',               // минифицируем картинки в build/img/
-    'includereplace:html',    // собираем HTML-файлы в build/ 
+    'includereplace:html',    // собираем HTML-файлы в build/
     'browserSync',            // запускаем плюшки автообновления
     'watch'                   // запускаем слежение за изменениями файлов
   ]);
@@ -292,8 +262,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build', [
     'clean:build',            // удаляем build/
-    'sprite',                 // собираем спрайты в build/img/sprite-1x.png и build/img/sprite-2x.png и записываем для них less-файлы
-     'copy:css_add',           // копируем дополнительные CSS-файлы из src/less/css/ в build/css/
     'less',                   // компилируем стили в          build/css/style.css
     'autoprefixer',           // обрабатываем автопрефиксером build/css/style.css
     'copy:css_min',           // создаем                      build/css/style.min.css
@@ -305,7 +273,7 @@ module.exports = function(grunt) {
     'copy:img',               // копируем всё из src/img/ в build/img/
     // 'copy:fonts',             // копируем всё из src/font/ в build/font/
     'imagemin',               // минифицируем картинки в build/img/
-    'includereplace:html',    // собираем HTML-файлы в build/ 
+    'includereplace:html',    // собираем HTML-файлы в build/
   ]);
 
 
@@ -328,7 +296,6 @@ module.exports = function(grunt) {
 
 
   grunt.registerTask('img', [
-    'sprite',
     'copy:img',
     'imagemin',
     'less',
