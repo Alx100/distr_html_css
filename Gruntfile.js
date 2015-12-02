@@ -2,7 +2,7 @@ module.exports = function(grunt) {
 
 
 
-  require('load-grunt-tasks')(grunt); // теперь все задачи — в package.json
+  require('load-grunt-tasks')(grunt);
   require('time-grunt')(grunt);
 
 
@@ -58,7 +58,7 @@ module.exports = function(grunt) {
           keepSpecialComments: 0
         },
         files: {
-          'build/css/style.min.css': ['build/css/style.min.css']
+          'build/css/style.min.css': ['build/css/style.css']
         }
       }
     },
@@ -128,6 +128,7 @@ module.exports = function(grunt) {
 
     clean: {
       build: [
+        'build/fonts',
         'build/css',
         'build/img',
         'build/js',
@@ -138,12 +139,6 @@ module.exports = function(grunt) {
 
 
     copy: {
-      js_vendors: {
-        expand: true,
-        cwd: 'src/js/vendors/',
-        src: ['**'],
-        dest: 'build/js/',
-      },
       img: {
         expand: true,
         cwd: 'src/img/',
@@ -154,12 +149,12 @@ module.exports = function(grunt) {
         src: ['build/css/style.css'],
         dest: 'build/css/style.min.css',
       },
-      // fonts: {
-      //   expand: true,
-      //   cwd: 'src/font/',
-      //   src: ['*.{eot,svg,woff,ttf}'],
-      //   dest: 'build/font/',
-      // },
+      fonts: {
+        expand: true,
+        cwd: 'src/fonts/',
+        src: ['*.{eot,svg,woff,woff2,ttf}'],
+        dest: 'build/fonts/',
+      },
     },
 
 
@@ -208,6 +203,14 @@ module.exports = function(grunt) {
           livereload: true
         },
       },
+      fonts: {
+        files: ['src/fonts/*.{eot,svg,woff,woff2,ttf}'],
+        tasks: ['copy:fonts'],
+        options: {
+          spawn: false,
+          livereload: true
+        },
+      },
     },
 
 
@@ -249,9 +252,8 @@ module.exports = function(grunt) {
     'cssmin',                 // минифицируем                 build/css/style.min.css
     'concat',                 // объединяем все указанные JS-файлы в build/js/script.min.js
     'uglify',                 // минифицируем                        build/js/script.min.js
-    'copy:js_vendors',        // копируем всё из src/js/vendors/ в build/js/
     'copy:img',               // копируем всё из src/img/ в build/img/
-    // 'copy:fonts',             // копируем всё из src/font/ в build/font/
+    'copy:fonts',             // копируем всё из src/fonts/ в build/fonts/
     'imagemin',               // минифицируем картинки в build/img/
     'includereplace:html',    // собираем HTML-файлы в build/
     'browserSync',            // запускаем плюшки автообновления
@@ -269,9 +271,8 @@ module.exports = function(grunt) {
     'cssmin',                 // минифицируем                 build/css/style.min.css
     'concat',                 // объединяем все указанные JS-файлы в build/js/script.min.js
     'uglify',                 // минифицируем                        build/js/script.min.js
-    'copy:js_vendors',        // копируем всё из src/js/vendors/ в build/js/
     'copy:img',               // копируем всё из src/img/ в build/img/
-    // 'copy:fonts',             // копируем всё из src/font/ в build/font/
+    'copy:fonts',             // копируем всё из src/fonts/ в build/fonts/
     'imagemin',               // минифицируем картинки в build/img/
     'includereplace:html',    // собираем HTML-файлы в build/
   ]);
@@ -281,7 +282,6 @@ module.exports = function(grunt) {
   grunt.registerTask('js', [
     'concat',
     'uglify',
-    'copy:js_vendors',
   ]);
 
 
