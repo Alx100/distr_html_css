@@ -4,29 +4,30 @@
 
 
 
-// Подгрузка шрифта (при использовании — поправить имя (FiraSans) и адрес (css/font_fira_sans.css) )
+// Подгрузка шрифта (при использовании — поправить имя (FONTNAME) и адрес (css/FONTNAME.css).
+// Работает только при открытии страницы с сервера.
 
 // (function(){
 //     function addFont() {
 //         var style = document.createElement('style');
 //         style.rel = 'stylesheet';
 //         document.head.appendChild(style);
-//         style.textContent = localStorage.FiraSans;
+//         style.textContent = localStorage.FONTNAME;
 //     }
 
 //     try {
-//         if (localStorage.FiraSans) {
+//         if (localStorage.FONTNAME) {
 //             // The font is in localStorage, we can load it directly
 //             addFont();
 //         } else {
 //             // We have to first load the font file asynchronously
 //             var request = new XMLHttpRequest();
-//             request.open('GET', 'css/font_fira_sans.css', true);
+//             request.open('GET', 'css/FONTNAME.css', true);
 
 //             request.onload = function() {
 //                 if (request.status >= 200 && request.status < 400) {
 //                     // We save the file in localStorage
-//                     localStorage.FiraSans = request.responseText;
+//                     localStorage.FONTNAME = request.responseText;
 //                     // ... and load the font
 //                     addFont();
 //                 }
@@ -42,11 +43,8 @@
 
 
 
-// кодъ Николая (nicothin) Громова
-// nicothin.ru
-
 // $(document).ready(function() {
 
-  // alert('fuck IE');
+  // alert('fuck jQuery');
 
 // });
