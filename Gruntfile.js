@@ -142,7 +142,7 @@ module.exports = function(grunt) {
       img: {
         expand: true,
         cwd: 'src/img/',
-        src: ['*.{png,jpg,gif,svg}'],
+        src: ['**'],
         dest: 'build/img/',
       },
       css_min: {
@@ -166,6 +166,22 @@ module.exports = function(grunt) {
         expand: true,
         cwd: 'src/'
       }
+    },
+
+
+
+    svgstore: {
+      options: {
+        // formatting : {
+        //   indent_size: 2
+        // },
+        includeTitleElement: false,
+      },
+      default : {
+        files: {
+          'src/img/sprite.svg': ['src/img/sprite_svg/*.svg'],
+        },
+      },
     },
 
 
@@ -252,8 +268,9 @@ module.exports = function(grunt) {
     'cssmin',                 // минифицируем                 build/css/style.min.css
     'concat',                 // объединяем все указанные JS-файлы в build/js/script.min.js
     'uglify',                 // минифицируем                        build/js/script.min.js
-    'copy:img',               // копируем всё из src/img/ в build/img/
     'copy:fonts',             // копируем всё из src/fonts/ в build/fonts/
+    'svgstore',               // собираем SVG-спрайт
+    'copy:img',               // копируем всё из src/img/ в build/img/
     'imagemin',               // минифицируем картинки в build/img/
     'includereplace:html',    // собираем HTML-файлы в build/
     'browserSync',            // запускаем плюшки автообновления
@@ -271,8 +288,9 @@ module.exports = function(grunt) {
     'cssmin',                 // минифицируем                 build/css/style.min.css
     'concat',                 // объединяем все указанные JS-файлы в build/js/script.min.js
     'uglify',                 // минифицируем                        build/js/script.min.js
-    'copy:img',               // копируем всё из src/img/ в build/img/
     'copy:fonts',             // копируем всё из src/fonts/ в build/fonts/
+    'svgstore',               // собираем SVG-спрайт
+    'copy:img',               // копируем всё из src/img/ в build/img/
     'imagemin',               // минифицируем картинки в build/img/
     'includereplace:html',    // собираем HTML-файлы в build/
   ]);
@@ -296,6 +314,7 @@ module.exports = function(grunt) {
 
 
   grunt.registerTask('img', [
+    'svgstore',
     'copy:img',
     'imagemin',
     'less',
