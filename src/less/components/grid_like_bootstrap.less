@@ -1,0 +1,170 @@
+@import '../variables.less'; // Можно удалять, это только для удобства написания кода.
+
+//                    ____
+//                 _.' :  `._
+//             .-.'`.  ;   .'`.-.
+//    __      / : ___\ ;  /___ ; \      __
+//  ,'_ ""--.:__;".-.";: :".-.":__;.--"" _`,
+//  :' `.t""--.. '<@.`;_  ',@>` ..--""j.' `;
+//       `:-.._J '-.-'L__ `-- ' L_..-;'
+//         "-.__ ;  .-"  "-.  : __.-"
+//             L ' /.------.\ ' J
+//              "-.   "--"   .-"
+//             __.l"-:_JL_;-";.__
+//          .-j/'.;  ;""""  / .'\"-.
+//        .' /:`. "-.:     .-" .';  `.
+//     .-"  / ;  "-. "-..-" .-"  :    "-.
+//  .+"-.  : :      "-.__.-"      ;-._   \
+//  ; \  `.; ;                    : : "+. ;
+//  :  ;   ; ;                    : ;  : \:
+// : `."-; ;  ;                  :  ;   ,/;
+//  ;    -: ;  :                ;  : .-"'  :
+//  :\     \  : ;             : \.-"      :
+//   ;`.    \  ; :            ;.'_..--  / ;
+//   :  "-.  "-:  ;          :/."      .'  :
+//     \       .-`.\        /t-""  ":-+.   :
+//      `.  .-"    `l    __/ /`. :  ; ; \  ;
+//        \   .-" .-"-.-"  .' .'j \  /   ;/
+//         \ / .-"   /.     .'.' ;_:'    ;
+//          :-""-.`./-.'     /    `.___.'
+//                \ `t  ._  /
+//                 "-.t-._:'
+//        использовать примеси должен ты,
+//                юный падаван
+
+
+
+.container-fluid {
+  padding-left: (@grid-gutter-width / 2);
+  padding-right: (@grid-gutter-width / 2);
+}
+
+.container {
+  padding-left: (@grid-gutter-width / 2);
+  padding-right: (@grid-gutter-width / 2);
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (min-width: @screen-sm) {
+    width: 100%;
+  }
+  @media (min-width: @screen-md) {
+    width: @screen-md - 20;
+  }
+  @media (min-width: @screen-lg) {
+    width: @screen-lg - 40;
+  }
+  @media (min-width: @screen-xl) {
+    width: @screen-xl - 80;
+  }
+  @media (min-width: @screen-xxl) {
+    width: @screen-xxl - 100;
+  }
+}
+
+.row {
+  .row();
+}
+
+.make-grid(xs);
+.make-grid(sm);
+.make-grid(md);
+.make-grid(lg);
+.make-grid(xl);
+.make-grid(xxl);
+
+.make-columns(@grid-columns, xs);
+.col-xs {
+  flex: 1 0 auto;
+  width: auto;
+  padding-left: (@grid-gutter-width / 2);
+  padding-right: (@grid-gutter-width / 2);
+}
+
+@media (min-width: @screen-sm) {
+  .make-columns(@grid-columns, sm);
+  .col-sm {
+    flex: 1 0 auto;
+    width: auto;
+    padding-left: (@grid-gutter-width / 2);
+    padding-right: (@grid-gutter-width / 2);
+  }
+}
+
+@media (min-width: @screen-md) {
+  .make-columns(@grid-columns, md);
+  .col-md {
+    flex: 1 0 auto;
+    width: auto;
+    padding-left: (@grid-gutter-width / 2);
+    padding-right: (@grid-gutter-width / 2);
+  }
+}
+
+@media (min-width: @screen-lg) {
+  .make-columns(@grid-columns, lg);
+  .col-lg {
+    flex: 1 0 auto;
+    width: auto;
+    padding-left: (@grid-gutter-width / 2);
+    padding-right: (@grid-gutter-width / 2);
+  }
+}
+
+@media (min-width: @screen-xl) {
+  .make-columns(@grid-columns, xl);
+  .col-xl {
+    flex: 1 0 auto;
+    width: auto;
+    padding-left: (@grid-gutter-width / 2);
+    padding-right: (@grid-gutter-width / 2);
+  }
+}
+
+@media (min-width: @screen-xxl) {
+  .make-columns(@grid-columns, xxl);
+  .col-xxl {
+    flex: 1 0 auto;
+    width: auto;
+    padding-left: (@grid-gutter-width / 2);
+    padding-right: (@grid-gutter-width / 2);
+  }
+}
+
+
+
+// Генератор классов и общих правил всех ячеек модульной сетки для определенной ширины
+// Возвращает набор классов и их общие правила (для указанной сетки)
+
+.make-grid(@screen: xs) {
+  .column-list(@index) {
+    @item: ~".col-@{screen}-@{index}";
+    .column-list((@index + 1), @item);
+  }
+  .column-list(@index, @list) when (@index =< @grid-columns) {
+    @item: ~".col-@{screen}-@{index}";
+    .column-list((@index + 1), ~"@{list}, @{item}");
+  }
+  .column-list(@index, @list) when (@index > @grid-columns) {
+    @{list} {
+      flex: 0 0 100%;
+      width: 100%;
+      padding-left: (@grid-gutter-width / 2);
+      padding-right: (@grid-gutter-width / 2);
+    }
+  }
+  .column-list(1);
+}
+
+
+
+// Генератор классов и правил для ширин ячеек модульной сетки
+// Возвращает классы и ширину
+
+.make-columns(@n, @screen, @i: 1) when (@i =< @n) {
+  .col-@{screen}-@{i} {
+    width: (@i * 100% / @n);
+    flex-basis: (@i * 100% / @n);
+  }
+  .make-columns(@n, @screen, (@i + 1));
+}
