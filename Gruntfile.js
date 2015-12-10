@@ -79,6 +79,7 @@ module.exports = function(grunt) {
         'build/img',
         'build/js',
         'build/*.html',
+        'build/*.ico',
       ]
     },
 
@@ -86,13 +87,14 @@ module.exports = function(grunt) {
       img: {
         expand: true,
         cwd: 'src/img/',
-        src: ['**'],
+        src: ['**/*.{png,jpg,gif,svg}'],
         dest: 'build/img/',
       },
       favicon: {
         expand: true,
-        src: ['src/favicon.ico'],
+        src: ['src/img/favicons/favicon.ico'],
         dest: 'build/',
+        flatten: true,
         filter: 'isFile'
       },
       css_add: {
@@ -110,7 +112,7 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          src: ['build/img/*.{png,jpg,gif,svg}']
+          src: ['build/img/**/*.{png,jpg,gif,svg}']
         }]
       }
     },

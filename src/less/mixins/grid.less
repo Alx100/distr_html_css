@@ -8,12 +8,12 @@
 // @flex-grow:   0                     - индивидуальный flex-grow
 // @flex-shrink: 0                     - индивидуальный flex-shrink
 
-.col(@column: 1; @columns: @grid-columns; @gutter: @grid-gutter-width; @flex-grow: 0; @flex-shrink: 0) {
+.make-col(@column: 1; @columns: @grid-columns; @gutter: @grid-gutter-width; @flex-grow: 0; @flex-shrink: 0) {
   @width: (100% / @columns) * @column;
   flex: @flex-grow @flex-shrink @width;
   width: @width;
 
-  // ВНИМАНИЕ! если передан false вместо значения padding,
+  // ВНИМАНИЕ! если передан false вместо значения @gutter,
   // в CSS не попадут правила padding-left и padding-right
   & when not (@gutter = false) {
     padding-left: (@gutter / 2);
@@ -46,80 +46,40 @@
 // Возвращает правила для ячейки
 //
 // Принимает:
+// @screen:      xs                    - тип сетки [xs|sm|md|lg|xl|xxl]
 // @column:      1                     - ширина (кол-во колонок для этой ячейки)
 // @columns:     @grid-columns;        - общее количество ячеек на 1 ряд
-// @screen:      xs                    - тип сетки [xs|sm|md|lg|xl|xxl]
 // @gutter:      @grid-gutter-width    - промежуток между ячейками
 // @flex-grow:   0                     - индивидуальный flex-grow
 // @flex-shrink: 0                     - индивидуальный flex-shrink
 
-.make-col(@column: 1; @columns: @grid-columns; @screen: xs; @gutter: @grid-gutter-width; @flex-grow: 0; @flex-shrink: 0) {
+.col(@screen: xs; @column: 1; @columns: @grid-columns; @gutter: @grid-gutter-width; @flex-grow: 0; @flex-shrink: 0) {
   & when (@screen = xs) {
-    .col(@column; @columns; @gutter; @flex-grow; @flex-shrink);
+    .make-col(@column; @columns; @gutter; @flex-grow; @flex-shrink);
   }
   & when (@screen = sm) {
     @media (min-width: @screen-sm) {
-      .col(@column; @columns; @gutter; @flex-grow; @flex-shrink);
+      .make-col(@column; @columns; @gutter; @flex-grow; @flex-shrink);
     }
   }
   & when (@screen = md) {
     @media (min-width: @screen-md) {
-      .col(@column; @columns; @gutter; @flex-grow; @flex-shrink);
+      .make-col(@column; @columns; @gutter; @flex-grow; @flex-shrink);
     }
   }
   & when (@screen = lg) {
     @media (min-width: @screen-lg) {
-      .col(@column; @columns; @gutter; @flex-grow; @flex-shrink);
+      .make-col(@column; @columns; @gutter; @flex-grow; @flex-shrink);
     }
   }
   & when (@screen = xl) {
     @media (min-width: @screen-xl) {
-      .col(@column; @columns; @gutter; @flex-grow; @flex-shrink);
+      .make-col(@column; @columns; @gutter; @flex-grow; @flex-shrink);
     }
   }
   & when (@screen = xxl) {
     @media (min-width: @screen-xxl) {
-      .col(@column; @columns; @gutter; @flex-grow; @flex-shrink);
-    }
-  }
-}
-
-
-
-// Генератор правил родителя ячеек с возможностью указать @media
-// Возвращает правила родителя
-//
-// Принимает:
-// @gutter: @grid-gutter-width      - промежуток между ячейками
-// @screen: xs                      - тип сетки [xs|sm|md|lg|xl|xxl]
-
-.make-row(@gutter: @grid-gutter-width; @screen: xs) {
-  & when (@screen = xs) {
-    .row(@gutter);
-  }
-  & when (@screen = sm) {
-    @media (min-width: @screen-sm) {
-      .row(@gutter);
-    }
-  }
-  & when (@screen = md) {
-    @media (min-width: @screen-md) {
-      .row(@gutter);
-    }
-  }
-  & when (@screen = lg) {
-    @media (min-width: @screen-lg) {
-      .row(@gutter);
-    }
-  }
-  & when (@screen = xl) {
-    @media (min-width: @screen-xl) {
-      .row(@gutter);
-    }
-  }
-  & when (@screen = xxl) {
-    @media (min-width: @screen-xxl) {
-      .row(@gutter);
+      .make-col(@column; @columns; @gutter; @flex-grow; @flex-shrink);
     }
   }
 }
