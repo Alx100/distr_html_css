@@ -47,7 +47,7 @@ grunt build    # стирание папки build и запуск всех за
 
 `src/less/components` — less-файлы, описывающие стили блоков страницы (отдельные и глобальные).
 
-`src/less/mixins.less` — примеси.
+`src/less/mixins` — примеси.
 
 
 

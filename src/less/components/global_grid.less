@@ -1,0 +1,74 @@
+@import '../variables.less'; // Можно удалять, это только для удобства написания кода.
+
+
+
+// Строка модульной сетки (многострочный флекс)
+.row {
+  .row();
+}
+
+// Общие правила для ячеек разного типа
+.make-grid(xs);
+.make-grid(sm);
+.make-grid(md);
+.make-grid(xl);
+.make-grid(xxl);
+
+// Ширины для ячеек разного типа
+.make-columns(@grid-columns, xs);
+.col-xs {
+  flex: 1 0 auto;
+  width: auto;
+  padding-left: (@grid-gutter-width / 2);
+  padding-right: (@grid-gutter-width / 2);
+}
+
+@media (min-width: @screen-sm) {
+  .make-columns(@grid-columns, sm);
+  .col-sm {
+    flex: 1 0 auto;
+    width: auto;
+    padding-left: (@grid-gutter-width / 2);
+    padding-right: (@grid-gutter-width / 2);
+  }
+}
+
+@media (min-width: @screen-md) {
+  .make-columns(@grid-columns, md);
+  .col-md {
+    flex: 1 0 auto;
+    width: auto;
+    padding-left: (@grid-gutter-width / 2);
+    padding-right: (@grid-gutter-width / 2);
+  }
+}
+
+@media (min-width: @screen-lg) {
+  .make-columns(@grid-columns, lg);
+  .col-lg {
+    flex: 1 0 auto;
+    width: auto;
+    padding-left: (@grid-gutter-width / 2);
+    padding-right: (@grid-gutter-width / 2);
+  }
+}
+
+// @media (min-width: @screen-xl) {
+//   .make-columns(@grid-columns, xl);
+//   .col-xl {
+//     flex: 1 0 auto;
+//     width: auto;
+//     padding-left: (@grid-gutter-width / 2);
+//     padding-right: (@grid-gutter-width / 2);
+//   }
+// }
+
+// @media (min-width: @screen-xxl) {
+//   .make-columns(@grid-columns, xxl);
+//   .col-xxl {
+//     flex: 1 0 auto;
+//     width: auto;
+//     padding-left: (@grid-gutter-width / 2);
+//     padding-right: (@grid-gutter-width / 2);
+//   }
+// }

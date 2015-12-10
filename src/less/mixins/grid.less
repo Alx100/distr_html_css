@@ -1,0 +1,163 @@
+// Генератор правил для ячейки
+// Возвращает правила для ячейки
+//
+// Принимает:
+// @column:      1                     - ширина (кол-во колонок для этой ячейки)
+// @columns:     @grid-columns;        - общее количество ячеек на 1 ряд
+// @gutter:      @grid-gutter-width    - промежуток между ячейками
+// @flex-grow:   0                     - индивидуальный flex-grow
+// @flex-shrink: 0                     - индивидуальный flex-shrink
+
+.col(@column: 1; @columns: @grid-columns; @gutter: @grid-gutter-width; @flex-grow: 0; @flex-shrink: 0) {
+  @width: (100% / @columns) * @column;
+  flex: @flex-grow @flex-shrink @width;
+  width: @width;
+
+  // ВНИМАНИЕ! если передан false вместо значения padding,
+  // в CSS не попадут правила padding-left и padding-right
+  & when not (@gutter = false) {
+    padding-left: (@gutter / 2);
+    padding-right: (@gutter / 2);
+  }
+}
+
+
+
+// Генератор правил родителя ячеек
+// Возвращает правила родителя
+//
+// Принимает:
+// @gutter: @grid-gutter-width      - промежуток между ячейками
+
+.row(@gutter: @grid-gutter-width) {
+  display: flex;
+  flex-wrap: wrap;
+
+  // ВНИМАНИЕ! если передан false, в CSS не попадут правила margin-ы
+  & when not (@gutter = false) {
+    margin-left: (@gutter / -2);
+    margin-right: (@gutter / -2);
+  }
+}
+
+
+
+// Генератор ячейки модульной сетки с возможностью указать @media
+// Возвращает правила для ячейки
+//
+// Принимает:
+// @column:      1                     - ширина (кол-во колонок для этой ячейки)
+// @columns:     @grid-columns;        - общее количество ячеек на 1 ряд
+// @screen:      xs                    - тип сетки [xs|sm|md|lg|xl|xxl]
+// @gutter:      @grid-gutter-width    - промежуток между ячейками
+// @flex-grow:   0                     - индивидуальный flex-grow
+// @flex-shrink: 0                     - индивидуальный flex-shrink
+
+.make-col(@column: 1; @columns: @grid-columns; @screen: xs; @gutter: @grid-gutter-width; @flex-grow: 0; @flex-shrink: 0) {
+  & when (@screen = xs) {
+    .col(@column; @columns; @gutter; @flex-grow; @flex-shrink);
+  }
+  & when (@screen = sm) {
+    @media (min-width: @screen-sm) {
+      .col(@column; @columns; @gutter; @flex-grow; @flex-shrink);
+    }
+  }
+  & when (@screen = md) {
+    @media (min-width: @screen-md) {
+      .col(@column; @columns; @gutter; @flex-grow; @flex-shrink);
+    }
+  }
+  & when (@screen = lg) {
+    @media (min-width: @screen-lg) {
+      .col(@column; @columns; @gutter; @flex-grow; @flex-shrink);
+    }
+  }
+  & when (@screen = xl) {
+    @media (min-width: @screen-xl) {
+      .col(@column; @columns; @gutter; @flex-grow; @flex-shrink);
+    }
+  }
+  & when (@screen = xxl) {
+    @media (min-width: @screen-xxl) {
+      .col(@column; @columns; @gutter; @flex-grow; @flex-shrink);
+    }
+  }
+}
+
+
+
+// Генератор правил родителя ячеек с возможностью указать @media
+// Возвращает правила родителя
+//
+// Принимает:
+// @gutter: @grid-gutter-width      - промежуток между ячейками
+// @screen: xs                      - тип сетки [xs|sm|md|lg|xl|xxl]
+
+.make-row(@gutter: @grid-gutter-width; @screen: xs) {
+  & when (@screen = xs) {
+    .row(@gutter);
+  }
+  & when (@screen = sm) {
+    @media (min-width: @screen-sm) {
+      .row(@gutter);
+    }
+  }
+  & when (@screen = md) {
+    @media (min-width: @screen-md) {
+      .row(@gutter);
+    }
+  }
+  & when (@screen = lg) {
+    @media (min-width: @screen-lg) {
+      .row(@gutter);
+    }
+  }
+  & when (@screen = xl) {
+    @media (min-width: @screen-xl) {
+      .row(@gutter);
+    }
+  }
+  & when (@screen = xxl) {
+    @media (min-width: @screen-xxl) {
+      .row(@gutter);
+    }
+  }
+}
+
+
+
+// Генератор классов и общих правил всех ячеек модульной сетки для определенной ширины
+// Возвращает набор классов и их общие правила (для указанной сетки)
+
+.make-grid(@screen: xs) {
+  .column-list(@index) {
+    @item: ~".col-@{screen}-@{index}";
+    .column-list((@index + 1), @item);
+  }
+  .column-list(@index, @list) when (@index =< @grid-columns) {
+    @item: ~".col-@{screen}-@{index}";
+    .column-list((@index + 1), ~"@{list}, @{item}");
+  }
+  .column-list(@index, @list) when (@index > @grid-columns) {
+    @{list} {
+      flex: 0 0 100%;
+      width: 100%;
+      padding-left: (@grid-gutter-width / 2);
+      padding-right: (@grid-gutter-width / 2);
+    }
+  }
+  .column-list(1);
+}
+
+
+
+// Генератор классов и правил для ширин ячеек модульной сетки
+// Возвращает классы и ширину
+
+.make-columns(@n, @screen, @i: 1) when (@i =< @n) {
+  .col-@{screen}-@{i} {
+    width: (@i * 100% / @n);
+    flex-basis: (@i * 100% / @n);
+  }
+  .make-columns(@n, @screen, (@i + 1));
+}

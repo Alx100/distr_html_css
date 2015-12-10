@@ -1,15 +1,8 @@
 module.exports = function(grunt) {
 
-
-
   require('load-grunt-tasks')(grunt);
-  require('time-grunt')(grunt);
-
-
 
   grunt.initConfig({
-
-
 
     less: {
       style: {
@@ -28,29 +21,24 @@ module.exports = function(grunt) {
       }
     },
 
-
-
-    autoprefixer: {
+    postcss: {
       options: {
-        browsers: ['last 2 versions', 'ie 11'],
-        map: true,
+        processors: [
+          require("autoprefixer")({browsers: "last 2 versions"})
+        ]
       },
       style: {
-        src: 'build/css/style.css'
+        src: "build/css/*.css"
       }
     },
-
-
 
     cmq: {
       style: {
         files: {
-          'build/css/style.min.css': ['build/css/style.min.css']
+          'build/css/style.css': ['build/css/style.css']
         }
       }
     },
-
-
 
     cssmin: {
       style: {
@@ -67,29 +55,53 @@ module.exports = function(grunt) {
       }
     },
 
-
-
     concat: {
       start: {
         src: [
           // 'src/js/plugin.js',
           'src/js/script.js'
         ],
-        dest: 'build/js/script.min.js'
+        dest: 'build/js/script.js'
       }
     },
-
-
 
     uglify: {
       start: {
         files: {
-          'build/js/script.min.js': ['build/js/script.min.js']
+          'build/js/script.min.js': ['build/js/script.js']
         }
       }
     },
 
+    clean: {
+      build: [
+        'build/css',
+        'build/img',
+        'build/js',
+        'build/*.html',
+      ]
+    },
 
+    copy: {
+      img: {
+        expand: true,
+        cwd: 'src/img/',
+        src: ['**'],
+        dest: 'build/img/',
+      },
+      favicon: {
+        expand: true,
+        src: ['src/favicon.ico'],
+        dest: 'build/',
+        filter: 'isFile'
+      },
+      css_add: {
+        expand: true,
+        cwd: 'src/css/',
+        src: ['**'],
+        dest: 'build/css/',
+      },
+    },
 
     imagemin: {
       build: {
@@ -103,65 +115,6 @@ module.exports = function(grunt) {
       }
     },
 
-
-    // потребует в package.json:  "grunt-replace": "^0.8.0",
-    // replace: {
-    //   dist: {
-    //     options: {
-    //       patterns: [
-    //         {
-    //           match: /<script src=\"js\/plugins.js/g,
-    //           replacement: '<script src="js/plugins.min.js'
-    //         },
-    //         {
-    //           match: /<script src=\"js\/script.js/g,
-    //           replacement: '<script src="js/script.min.js'
-    //         }
-    //       ]
-    //     },
-    //     files: [
-    //       {
-    //         expand: true,
-    //         src: ['src/*.html']
-    //       }
-    //     ]
-    //   }
-    // },
-
-
-
-    clean: {
-      build: [
-        'build/css',
-        'build/img',
-        'build/js',
-        'build/*.html',
-      ]
-    },
-
-
-
-    copy: {
-      img: {
-        expand: true,
-        cwd: 'src/img/',
-        src: ['**'],
-        dest: 'build/img/',
-      },
-      css_min: {
-        src: ['build/css/style.css'],
-        dest: 'build/css/style.min.css',
-      },
-      css_add: {
-        expand: true,
-        cwd: 'src/css/',
-        src: ['**'],
-        dest: 'build/css/',
-      },
-    },
-
-
-
     includereplace: {
       html: {
         src: '*.html',
@@ -170,8 +123,6 @@ module.exports = function(grunt) {
         cwd: 'src/'
       }
     },
-
-
 
     svgstore: {
       options: {
@@ -187,52 +138,47 @@ module.exports = function(grunt) {
       },
     },
 
-
-
     watch: {
+      livereload: {
+        options: { livereload: true },
+        files: ['build/**/*'],
+      },
       style: {
         files: ['src/less/**/*.less'],
         tasks: ['style'],
         options: {
           spawn: false,
-          livereload: true
         },
       },
       style_add: {
         files: ['src/css/**/*.css'],
         tasks: ['style'],
         options: {
-          spawn: false,
-          livereload: true
+          spawn: false
         },
       },
       scripts: {
         files: ['src/js/script.js'],
         tasks: ['js'],
         options: {
-          spawn: false,
-          livereload: true
+          spawn: false
         },
       },
       images: {
         files: ['src/img/**/*.{png,jpg,gif,svg}'],
         tasks: ['img'],
         options: {
-          spawn: false,
-          livereload: true
+          spawn: false
         },
       },
       html: {
         files: ['src/*.html', 'src/_html_inc/*.html'],
         tasks: ['includereplace:html'],
         options: {
-          spawn: false,
-          livereload: true
+          spawn: false
         },
       },
     },
-
-
 
     browserSync: {
       dev: {
@@ -263,66 +209,41 @@ module.exports = function(grunt) {
 
 
 
+
   grunt.registerTask('default', [
-    'less',                   // компилируем стили в          build/css/style.css
-    'autoprefixer',           // обрабатываем автопрефиксером build/css/style.css
-    'copy:css_min',           // создаем                      build/css/style.min.css
-    'cmq',                    // объединяем медиа-правила в   build/css/style.min.css
-    'cssmin',                 // минифицируем                 build/css/style.min.css
-    'concat',                 // объединяем все указанные JS-файлы в build/js/script.min.js
-    'uglify',                 // минифицируем                        build/js/script.min.js
-    'svgstore',               // собираем SVG-спрайт
-    'copy:img',               // копируем всё из src/img/ в build/img/
-    'imagemin',               // минифицируем картинки в build/img/
-    'includereplace:html',    // собираем HTML-файлы в build/
-    'browserSync',            // запускаем плюшки автообновления
-    'watch'                   // запускаем слежение за изменениями файлов
+    'style',
+    'js',
+    'img',
+    'includereplace:html',
+    'browserSync',
+    'watch'
   ]);
-
-
 
   grunt.registerTask('build', [
-    'clean:build',            // удаляем build/
-    'less',                   // компилируем стили в          build/css/style.css
-    'autoprefixer',           // обрабатываем автопрефиксером build/css/style.css
-    'copy:css_add',           // копируем добавочные CSS-файлы
-    'copy:css_min',           // создаем                      build/css/style.min.css
-    'cmq',                    // объединяем медиа-правила в   build/css/style.min.css
-    'cssmin',                 // минифицируем                 build/css/style.min.css
-    'concat',                 // объединяем все указанные JS-файлы в build/js/script.min.js
-    'uglify',                 // минифицируем                        build/js/script.min.js
-    'svgstore',               // собираем SVG-спрайт
-    'copy:img',               // копируем всё из src/img/ в build/img/
-    'imagemin',               // минифицируем картинки в build/img/
-    'includereplace:html',    // собираем HTML-файлы в build/
+    'clean:build',
+    'style',
+    'js',
+    'img',
+    'includereplace:html',
   ]);
-
-
 
   grunt.registerTask('js', [
-    'concat',
-    'uglify',
+    'concat',                 // объединяем все указанные JS-файлы в build/js/script.min.js
+    'uglify',                 // минифицируем                        build/js/script.min.js
   ]);
-
-
 
   grunt.registerTask('style', [
-    'less',
-    'autoprefixer',
-    'cmq',
-    'cssmin'
+    'less',                   // компилируем стили в build/css/style.css
+    'postcss',                // обрабатываем postcss-ом все файлы .css в build/css/
+    'cmq',                    // объединяем медиа-правила в build/css/style.css
+    'cssmin',                 // минифицируем
   ]);
 
-
-
   grunt.registerTask('img', [
-    'svgstore',
-    'copy:img',
-    'imagemin',
-    'less',
-    'autoprefixer',
-    'cmq',
-    'cssmin'
+    'svgstore',               // собираем SVG-спрайт
+    'copy:img',               // копируем всё из src/img/ в build/img/
+    'copy:favicon',           // копируем favicon
+    'imagemin',               // минифицируем картинки в build/img/
   ]);
 
 };

@@ -1,10 +1,12 @@
-/* Nikolay Gromov. Author URI: http://nicothin.ru */
+// Nikolay Gromov. Author URI: http://nicothin.ru
 
 @import 'variables.less';
-@import 'mixins.less';
+@import 'mixins/grid.less';
 
+@import 'components/global_scaffolding.less';      // Базис
+@import 'components/global_type.less';             // Типографика
+@import 'components/global_forms.less';            // Формы
+@import 'components/global_tables.less';           // Таблицы
+@import 'components/global_grid.less';             // Модульная сетка (лучше использовать примеси!)
 
-@import 'components/scaffolding.less';      // Базис
-@import 'components/type.less';             // Типографика
-@import 'components/forms.less';            // Формы
-@import 'components/tables.less';           // Таблицы
+@import 'components/layout.less';                  // Раскладка блоков
