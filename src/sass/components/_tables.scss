@@ -1,19 +1,15 @@
-@import '../variables.less'; // Можно удалять, это только для удобства написания кода.
-
-
-
 table {
   width: 100%;
   margin-top: 0;
-  margin-bottom: @type-spacer;
+  margin-bottom: $type-spacer;
   border-collapse: collapse;
-  border: 1px solid @color__gray-light;
+  border: 1px solid $color__gray-light;
 }
 
 
 // caption {
 //   padding-top: .2em;
-//   color: @text-color;
+//   color: $text-color;
 //   text-align: left;
 //   caption-side: bottom;
 // }
@@ -21,11 +17,11 @@ table {
 
 td,
 th {
-  padding: (@spacer / 2);
+  padding: ($spacer / 2);
   vertical-align: top;
   text-align: left;
-  line-height: @line-height;
-  border: 1px solid @color__gray-light;
+  line-height: $line-height;
+  border: 1px solid $color__gray-light;
 }
 
 

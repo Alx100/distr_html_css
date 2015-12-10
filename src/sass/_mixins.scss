@@ -1,0 +1,229 @@
+// Генератор правил для ячейки
+// Возвращает правила для ячейки.
+//
+// Принимает:
+// $column:      1                     - ширина (кол-во колонок для этой ячейки)
+// $columns:     $grid-columns;        - общее количество ячеек на 1 ряд
+// $gutter:      $grid-gutter-width    - промежуток между ячейками
+// $flex-grow:   0                     - индивидуальный flex-grow
+// $flex-shrink: 0                     - индивидуальный flex-shrink
+
+.col(@column: 1; $columns: $grid-columns; $gutter: $grid-gutter-width; $flex-grow: 0; $flex-shrink: 0) {
+  $width: (100% / $columns) * $column;
+  flex: $flex-grow $flex-shrink $width;
+  width: $width;
+
+  // ВНИМАНИЕ! если передан false вместо значения padding,
+  // в CSS не попадут правила padding-left и padding-right
+  & when not (@gutter = false) {
+    padding-left: (@gutter / 2);
+    padding-right: (@gutter / 2);
+  }
+}
+
+
+
+// Генератор ячейки модульной сетки с возможностью указать $media
+// Возвращает правила для ячейки.
+//
+// Принимает:
+// $column:      1                     - ширина (кол-во колонок для этой ячейки)
+// $columns:     $grid-columns;        - общее количество ячеек на 1 ряд
+// $screen:      xs                    - тип сетки [xs|sm|md|lg|xl|xxl]
+// $gutter:      $grid-gutter-width    - промежуток между ячейками
+// $flex-grow:   0                     - индивидуальный flex-grow
+// $flex-shrink: 0                     - индивидуальный flex-shrink
+
+.make-col(@column: 1; $columns: $grid-columns; $screen: xs; $gutter: $grid-gutter-width; $flex-grow: 0; $flex-shrink: 0) {
+  & when (@screen = xs) {
+    .col(@column; $columns; $gutter; $flex-grow; $flex-shrink);
+  }
+  & when (@screen = sm) {
+    $media (min-width: $screen-sm) {
+      .col(@column; $columns; $gutter; $flex-grow; $flex-shrink);
+    }
+  }
+  & when (@screen = md) {
+    $media (min-width: $screen-md) {
+      .col(@column; $columns; $gutter; $flex-grow; $flex-shrink);
+    }
+  }
+  & when (@screen = lg) {
+    $media (min-width: $screen-lg) {
+      .col(@column; $columns; $gutter; $flex-grow; $flex-shrink);
+    }
+  }
+  & when (@screen = xl) {
+    $media (min-width: $screen-xl) {
+      .col(@column; $columns; $gutter; $flex-grow; $flex-shrink);
+    }
+  }
+  & when (@screen = xxl) {
+    $media (min-width: $screen-xxl) {
+      .col(@column; $columns; $gutter; $flex-grow; $flex-shrink);
+    }
+  }
+}
+
+
+
+// Генератор правил родителя ячеек
+// Возвращает правила родителя.
+//
+// Принимает:
+// $gutter: $grid-gutter-width      - промежуток между ячейками
+// $wrap:   wrap                    - многострочный flex
+
+.row(@gutter: $grid-gutter-width; $wrap: wrap) {
+  display: flex;
+
+  // ВНИМАНИЕ! если передан false вместо значения padding,
+  // в CSS не попадут правила margin-left и margin-right
+  & when not (@gutter = false) {
+    margin-left: (@gutter / -2);
+    margin-right: (@gutter / -2);
+  }
+
+  & when (@wrap = wrap) {
+    flex-wrap: wrap;
+  }
+}
+
+
+
+// Генератор правил родителя ячеек с возможностью указать $media
+// Возвращает правила родителя.
+//
+// Принимает:
+// $gutter: $grid-gutter-width      - промежуток между ячейками
+// $screen: xs                      - тип сетки [xs|sm|md|lg|xl|xxl]
+// $wrap:   wrap                    - многострочный flex
+
+.make-row(@gutter: $grid-gutter-width; $screen: xs; $wrap: wrap) {
+  & when (@screen = xs) {
+    .row(@gutter, $wrap);
+  }
+  & when (@screen = sm) {
+    $media (min-width: $screen-sm) {
+      .row(@gutter, $wrap);
+    }
+  }
+  & when (@screen = md) {
+    $media (min-width: $screen-md) {
+      .row(@gutter, $wrap);
+    }
+  }
+  & when (@screen = lg) {
+    $media (min-width: $screen-lg) {
+      .row(@gutter, $wrap);
+    }
+  }
+  & when (@screen = xl) {
+    $media (min-width: $screen-xl) {
+      .row(@gutter, $wrap);
+    }
+  }
+  & when (@screen = xxl) {
+    $media (min-width: $screen-xxl) {
+      .row(@gutter, $wrap);
+    }
+  }
+}
+
+
+
+
+// Генератор правил для ячейки
+// Возвращает правила для ячейки.
+//
+// Принимает:
+// $column:      1                     - ширина (кол-во колонок)
+// $columns:     $grid-columns;        - общее количество ячеек на 1 ряд
+// $gutter:      $grid-gutter-width    - промежуток между ячейками
+// $flex-grow:   0                     - индивидуальный flex-grow
+// $flex-shrink: 0                     - индивидуальный flex-shrink
+
+.col(@column: 1; $columns: $grid-columns; $gutter: $grid-gutter-width; $flex-grow: 0; $flex-shrink: 0) {
+  $width: (100% / $columns) * $column;
+  flex: $flex-grow $flex-shrink $width;
+  width: $width;
+
+  // ВНИМАНИЕ! если передано нулевой расстояния между ячейками,
+  // в CSS не попадут правила padding-left и padding-right
+  & when (@gutter > 0) {
+    padding-left: (@gutter / 2);
+    padding-right: (@gutter / 2);
+  }
+}
+
+
+
+// Генератор ячейки модульной сетки с возможностью указать $media
+// Возвращает правила для ячейки.
+//
+// Принимает:
+// $column:      1                     - ширина (кол-во колонок)
+// $columns:     $grid-columns;        - общее количество ячеек на 1 ряд
+// $screen:      xs                    - тип сетки [xs|sm|md|lg|xl|xxl]
+// $gutter:      $grid-gutter-width    - промежуток между ячейками
+// $flex-grow:   0                     - индивидуальный flex-grow
+// $flex-shrink: 0                     - индивидуальный flex-shrink
+
+.make-col(@column: 1; $columns: $grid-columns; $screen: xs; $gutter: $grid-gutter-width; $flex-grow: 0; $flex-shrink: 0) {
+  & when (@screen = xs) {
+    .col(@column; $columns; $gutter; $flex-grow; $flex-shrink);
+  }
+  & when (@screen = sm) {
+    $media (min-width: $screen-sm) {
+      .col(@column; $columns; $gutter; $flex-grow; $flex-shrink);
+    }
+  }
+  & when (@screen = md) {
+    $media (min-width: $screen-md) {
+      .col(@column; $columns; $gutter; $flex-grow; $flex-shrink);
+    }
+  }
+  & when (@screen = lg) {
+    $media (min-width: $screen-lg) {
+      .col(@column; $columns; $gutter; $flex-grow; $flex-shrink);
+    }
+  }
+  & when (@screen = xl) {
+    $media (min-width: $screen-xl) {
+      .col(@column; $columns; $gutter; $flex-grow; $flex-shrink);
+    }
+  }
+  & when (@screen = xxl) {
+    $media (min-width: $screen-xxl) {
+      .col(@column; $columns; $gutter; $flex-grow; $flex-shrink);
+    }
+  }
+}
+
+
+
+
+
+
+// Живой пример использования
+
+// * {box-sizing: border-box;}
+
+// body {margin: 0;}
+
+// .container {
+//   padding-left: (@grid-gutter-width / 2);
+//   padding-right: (@grid-gutter-width / 2);
+// }
+
+// .grid {
+//   .make-row(); // на любых вьюпортах отступы по умолчанию (не указаны)
+//   .make-row(0, md); // начиная с MD отступы нулевые
+
+//   &__item {
+//     .make-col(6, 12); // на любых вьюпортах ширина 1/2 и отступы по умолчанию (не указаны)
+//     .make-col(4, 12, md, 0); // начиная с MD ширина 1/3 и нулевые отступы
+//     background-color: #ddd;
+//     border: 1px solid #ccc;
+//   }
+// }

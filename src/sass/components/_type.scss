@@ -1,0 +1,125 @@
+html {
+  font-size: $font-size--html;
+}
+
+
+body {
+  font-family: $font-family;
+  font-size:   $font-size;
+  line-height: $line-height;
+  color:       $text-color;
+}
+
+
+// .h1, .h2, .h3, .h4, .h5, .h6,
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: $headings__margin-bottom;
+  font-family:   $headings__font-family;
+  font-weight:   $headings__font-weight;
+  line-height:   $headings__line-height;
+  color:         $headings__color;
+}
+
+// TODO Разобраться с верхними отступами
+
+h1 { font-size: $font-size--h1; }
+h2 { font-size: $font-size--h2; }
+h3 { font-size: $font-size--h3; }
+h4 { font-size: $font-size--h4; }
+h5 { font-size: $font-size--h5; }
+h6 { font-size: $font-size--h6; }
+
+// .h1 { font-size: $font-size--h1; }
+// .h2 { font-size: $font-size--h2; }
+// .h3 { font-size: $font-size--h3; }
+// .h4 { font-size: $font-size--h4; }
+// .h5 { font-size: $font-size--h5; }
+// .h6 { font-size: $font-size--h6; }
+
+
+p {
+  margin-top: 0;
+  margin-bottom: $type-spacer;
+}
+
+
+ol,
+ul,
+dl {
+  margin-top: 0;
+  margin-bottom: $type-spacer;
+}
+
+// ol ol,
+// ul ul,
+// ol ul,
+// ul ol {
+//   margin-bottom: 0;
+// }
+
+
+// hr {
+//   margin-top:    $type-spacer;
+//   margin-bottom: $type-spacer;
+//   border: 0;
+//   border-top: 1px solid $color__gray-light;
+// }
+
+
+// pre {
+//   margin-top: 0;
+//   margin-bottom: $type-spacer;
+//   padding: 1em;
+//   border-radius: $border-radius;
+//   border: 1px solid $color__gray;
+//   background-color: $color__gray-lighter;
+// }
+
+// .code {
+//   padding: .2em;
+//   background-color: $color__gray-lighter;
+// }
+
+
+// figure {
+//   margin: 0 0 $type-spacer;
+// }
+
+
+// address {
+//   margin-bottom: $type-spacer;
+//   font-style: normal;
+//   line-height: inherit;
+// }
+
+
+// .small,
+// small {
+//   font-size: $font-size--small;
+// }
+
+
+// .mark,
+// mark {
+//   padding: .2em;
+//   background-color: $color__warning;
+// }
+
+
+// blockquote {
+//   padding: $spacer;
+//   margin-bottom: $type-spacer;
+//   border-left: .25rem solid $color__gray-lighter;
+
+//   p, ul, ol {
+//     &:last-child {
+//       margin-bottom: 0;
+//     }
+//   }
+
+//   footer {
+//     font-size: $font-size--small;
+//     text-align: right;
+//     color: $color__gray;
+//   }
+// }
