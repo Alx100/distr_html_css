@@ -7,7 +7,7 @@
 // @gutter:      @grid-gutter-width    - промежуток между ячейками
 
 .make-col(@column: 1; @columns: @grid-columns; @gutter: @grid-gutter-width) {
-  @width: (100% / @columns) * @column;
+  .get-col-width(); // @width: (100% / @columns) * @column;
   flex: 0 0 @width;
   width: @width;
 
@@ -78,4 +78,16 @@
       .make-col(@column; @columns; @gutter);
     }
   }
+}
+
+
+
+// Функция, возвращающая переменную с шириной в кол-ве ячеек модульной сетки
+//
+// Принимает:
+// @column:      1                     - ширина (кол-во колонок для этой ячейки)
+// @columns:     @grid-columns;        - общее количество ячеек на 1 ряд
+
+.get-col-width(@column: 1; @columns: @grid-columns;) {
+  @width: (100% / @columns) * @column;
 }
