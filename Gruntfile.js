@@ -10,10 +10,6 @@ module.exports = function(grunt) {
           compress: false,
           yuicompress: false,
           optimization: 2,
-          sourceMap: true,
-          sourceMapFilename: "build/css/style.css.map",
-          sourceMapURL: 'style.css.map',
-          sourceMapRootpath: '../../',
         },
         files: {
           'build/css/style.css': ['src/less/style.less']
@@ -102,6 +98,12 @@ module.exports = function(grunt) {
         cwd: 'src/css/',
         src: ['**'],
         dest: 'build/css/',
+      },
+      fonts: {
+        expand: true,
+        cwd: 'src/fonts/',
+        src: ['**'],
+        dest: 'build/fonts/',
       },
     },
 
@@ -213,6 +215,7 @@ module.exports = function(grunt) {
 
 
   grunt.registerTask('default', [
+    // 'copy:fonts',
     'style',
     'js',
     'img',
@@ -223,6 +226,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build', [
     'clean:build',
+    // 'copy:fonts',
     'style',
     'js',
     'img',
@@ -231,10 +235,11 @@ module.exports = function(grunt) {
 
   grunt.registerTask('js', [
     'concat',                 // объединяем все указанные JS-файлы в build/js/script.min.js
-    'uglify',                 // минифицируем                        build/js/script.min.js
+    'uglify',                 // минифицируем build/js/script.min.js
   ]);
 
   grunt.registerTask('style', [
+    'copy:css_add',           // копируем добавочные файлы
     'less',                   // компилируем стили в build/css/style.css
     'postcss',                // обрабатываем postcss-ом все файлы .css в build/css/
     'cmq',                    // объединяем медиа-правила в build/css/style.css

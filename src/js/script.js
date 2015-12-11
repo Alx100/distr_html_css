@@ -4,7 +4,7 @@
 
 
 
-// Подгрузка шрифта (при использовании — поправить имя (FONTNAME) и адрес (css/FONTNAME.css).
+// Подгрузка шрифта (при использовании — поправить имя (FONTNAME) и, возможно, адрес (css/font.css).
 // Работает только при открытии страницы с сервера.
 
 // (function(){
@@ -22,7 +22,7 @@
 //         } else {
 //             // We have to first load the font file asynchronously
 //             var request = new XMLHttpRequest();
-//             request.open('GET', 'css/FONTNAME.css', true);
+//             request.open('GET', 'css/font.css', true);
 
 //             request.onload = function() {
 //                 if (request.status >= 200 && request.status < 400) {

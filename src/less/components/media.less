@@ -1,0 +1,94 @@
+@import '../variables.less'; // Можно удалять, это только для удобства написания кода.
+
+
+
+// <article class="media">
+//   <div class="media__image">
+//     <a href=""><img src="http://placehold.it/70x70" alt=""></a>
+//   </div>
+//   <div class="media__body">
+//     <h1 class="media__heading">Какое-то название медиа-объекта или медиа-объедка</h1>
+//     Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные тексты. Большой родного, домах
+//     своего дорогу. Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные тексты. Большой
+//     родного, домах своего дорогу.
+//
+//     <article class="media  media--revert">
+//       <div class="media__image">
+//         <a href=""><img src="http://placehold.it/70x70" alt=""></a>
+//       </div>
+//       <div class="media__body">
+//         <h1 class="media__heading">Какое-то название медиа-объекта или медиа-объедка</h1>
+//         Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные тексты. Большой родного, домах
+//         своего дорогу. Далеко-далеко за словесными горами в стране, гласных и согласных живут рыбные тексты. Большой
+//         родного, домах своего дорогу.
+//       </div>
+//     </article>
+//
+//   </div>
+// </article>
+
+
+
+.media {
+  display: flex;
+  margin-bottom: @spacer;
+
+  // Смена очередности иллюстрация/текст
+  &--revert {
+    > .media__image { // только внутри этого .media
+      order: 1;
+      padding-right: 0;
+      padding-left: @spacer;
+    }
+  }
+
+
+
+  &__image {
+    flex: 0 0 auto;
+    padding-right: @spacer;
+
+    // Редкая ситуация, закомментировано
+    // &--middle {
+    //   align-self: center;
+    // }
+  }
+
+  &__body {
+    flex: 1;
+
+    .media {
+      margin-top: @spacer;
+      margin-bottom: 0;
+    }
+
+    // Редкая ситуация, закомментировано
+    // &--middle {
+    //   align-self: center;
+    // }
+  }
+
+  &__heading {
+    margin-top: 0;
+    margin-bottom: @spacer / 2;
+    font-family:   @headings__font-family;
+    font-weight:   @headings__font-weight;
+    line-height:   @headings__line-height;
+    color:         @headings__color;
+    font-size:     @font-size--h2;
+  }
+
+}
+
+
+
+// <ul class="media-list">
+//   <li class="media">
+//     ...
+//   </li>
+// </ul>
+
+.media-list {
+  list-style: none;
+  padding-left: 0;
+}
