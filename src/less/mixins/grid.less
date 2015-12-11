@@ -5,12 +5,10 @@
 // @column:      1                     - ширина (кол-во колонок для этой ячейки)
 // @columns:     @grid-columns;        - общее количество ячеек на 1 ряд
 // @gutter:      @grid-gutter-width    - промежуток между ячейками
-// @flex-grow:   0                     - индивидуальный flex-grow
-// @flex-shrink: 0                     - индивидуальный flex-shrink
 
-.make-col(@column: 1; @columns: @grid-columns; @gutter: @grid-gutter-width; @flex-grow: 0; @flex-shrink: 0) {
+.make-col(@column: 1; @columns: @grid-columns; @gutter: @grid-gutter-width) {
   @width: (100% / @columns) * @column;
-  flex: @flex-grow @flex-shrink @width;
+  flex: 0 0 @width;
   width: @width;
 
   // ВНИМАНИЕ! если передан false вместо значения @gutter,
@@ -50,36 +48,34 @@
 // @column:      1                     - ширина (кол-во колонок для этой ячейки)
 // @columns:     @grid-columns;        - общее количество ячеек на 1 ряд
 // @gutter:      @grid-gutter-width    - промежуток между ячейками
-// @flex-grow:   0                     - индивидуальный flex-grow
-// @flex-shrink: 0                     - индивидуальный flex-shrink
 
-.col(@screen: xs; @column: 1; @columns: @grid-columns; @gutter: @grid-gutter-width; @flex-grow: 0; @flex-shrink: 0) {
+.col(@screen: xs; @column: 1; @columns: @grid-columns; @gutter: @grid-gutter-width) {
   & when (@screen = xs) {
-    .make-col(@column; @columns; @gutter; @flex-grow; @flex-shrink);
+    .make-col(@column; @columns; @gutter);
   }
   & when (@screen = sm) {
     @media (min-width: @screen-sm) {
-      .make-col(@column; @columns; @gutter; @flex-grow; @flex-shrink);
+      .make-col(@column; @columns; @gutter);
     }
   }
   & when (@screen = md) {
     @media (min-width: @screen-md) {
-      .make-col(@column; @columns; @gutter; @flex-grow; @flex-shrink);
+      .make-col(@column; @columns; @gutter);
     }
   }
   & when (@screen = lg) {
     @media (min-width: @screen-lg) {
-      .make-col(@column; @columns; @gutter; @flex-grow; @flex-shrink);
+      .make-col(@column; @columns; @gutter);
     }
   }
   & when (@screen = xl) {
     @media (min-width: @screen-xl) {
-      .make-col(@column; @columns; @gutter; @flex-grow; @flex-shrink);
+      .make-col(@column; @columns; @gutter);
     }
   }
   & when (@screen = xxl) {
     @media (min-width: @screen-xxl) {
-      .make-col(@column; @columns; @gutter; @flex-grow; @flex-shrink);
+      .make-col(@column; @columns; @gutter);
     }
   }
 }
