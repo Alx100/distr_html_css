@@ -2,12 +2,33 @@
 
 
 
+//------------------------------------------------------------------------------
+//  Таблицы
+//------------------------------------------------------------------------------
+
+
 table {
   width: 100%;
   margin-top: 0;
   margin-bottom: @type-spacer;
   border-collapse: collapse;
-  border: 1px solid @color__gray-light;
+  border-bottom: 1px solid @color__gray-lighter;
+  // border: 1px solid @color__gray-lighter;
+}
+
+td,
+th {
+  padding: (@spacer / 2);
+  vertical-align: top;
+  text-align: left;
+  line-height: @line-height;
+  border-top: 1px solid @color__gray-lighter;
+  // border: 1px solid @color__gray-lighter;
+}
+
+thead th {
+  vertical-align: bottom;
+  background-color: @color__gray-lightest;
 }
 
 // caption {
@@ -17,17 +38,55 @@ table {
 //   caption-side: bottom;
 // }
 
-td,
-th {
-  padding: (@spacer / 2);
-  vertical-align: top;
-  text-align: left;
-  line-height: @line-height;
-  border: 1px solid @color__gray-light;
-}
+
+
+
+
+// Обёртка для адаптивной таблицы (div.table-responsive>table)
 
 // .table-responsive {
+//   display: block;
+//   position: relative;
 //   width: 100%;
 //   overflow-x: auto;
 //   -ms-overflow-style: -ms-autohiding-scrollbar;
 // }
+
+
+
+
+// Настоящая адаптивная таблица (требует дополнительных атрибутов в разметке, см. примесь)
+
+// .table-responsive-data {
+//   .table-responsive-data(sm);
+// }
+
+
+
+// Таблица-зёбра
+
+// .table-striped {
+//   tbody tr:nth-of-type(even) {
+//     background-color: @color__gray-lightest;
+//   }
+// }
+
+
+
+// Таблица с реакцией на наведение на строки
+
+// .table-hover {
+//   tbody tr:hover {
+//     background-color: @color__gray-lightest;
+//   }
+// }
+
+
+
+// Строки таблиц с фоновым цветом
+
+// .row-active  { background-color: @color__gray-lightest; }
+// .row-success { background-color: saturate(lighten(@color__success, 37%), 7%); }
+// .row-info    { background-color: saturate(lighten(@color__info, 30%), 7%); }
+// .row-danger  { background-color: saturate(lighten(@color__danger, 33%), 7%); }
+// .row-warning { background-color: saturate(lighten(@color__warning, 33%), 7%); }

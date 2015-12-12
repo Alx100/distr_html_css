@@ -2,6 +2,11 @@
 
 
 
+//------------------------------------------------------------------------------
+//  Базовые стили
+//------------------------------------------------------------------------------
+
+
 @-ms-viewport {
   width: device-width;
 }
@@ -38,7 +43,18 @@ a {
 
 img {
   max-width: 100%;
+  height: auto;
   vertical-align: middle;
+  // width: 100% \9; // Возможное решение для svg-картинок в IE9-10
+}
+
+figure {
+  margin: @type-spacer 0;
+}
+
+figcaption {
+  font-size: @font-size--small;
+  margin-top: .5em;
 }
 
 [role="button"] {

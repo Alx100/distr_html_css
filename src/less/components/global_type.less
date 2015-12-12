@@ -2,8 +2,39 @@
 
 
 
+//------------------------------------------------------------------------------
+//  Типографика
+//------------------------------------------------------------------------------
+
+
 html {
-  font-size: @font-size--html;
+  font-size: @font-size-html;
+
+  & when not (@font-size-html--sm = @font-size-html) {
+    @media (min-width: @screen-sm) {
+      font-size: @font-size-html--sm;
+    }
+  }
+  & when not (@font-size-html--md = @font-size-html) {
+    @media (min-width: @screen-md) {
+      font-size: @font-size-html--md;
+    }
+  }
+  & when not (@font-size-html--lg = @font-size-html) {
+    @media (min-width: @screen-lg) {
+      font-size: @font-size-html--lg;
+    }
+  }
+  & when not (@font-size-html--xl = @font-size-html) {
+    @media (min-width: @screen-xl) {
+      font-size: @font-size-html--xl;
+    }
+  }
+  & when not (@font-size-html--xxl = @font-size-html) {
+    @media (min-width: @screen-xxl) {
+      font-size: @font-size-html--xxl;
+    }
+  }
 }
 
 body {
@@ -66,15 +97,35 @@ dl {
 // pre {
 //   margin-top: 0;
 //   margin-bottom: @type-spacer;
-//   padding: 1em;
+//   font-size: 90%;
+//   font-family: @font-family--monospace;
+//   padding: .5em;
 //   border-radius: @border-radius;
 //   border: 1px solid @color__gray;
 //   background-color: @color__gray-lighter;
 // }
 
-// .code {
+// code {
 //   padding: .2em;
+//   font-size: 90%;
+//   font-family: @font-family--monospace;
 //   background-color: @color__gray-lighter;
+// }
+
+// samp {
+//   padding: .2em;
+//   font-size: 90%;
+//   font-family: @font-family--monospace;
+//   background-color: @color__gray-lighter;
+// }
+
+// kdb {
+//   padding: .2em;
+//   font-size: 90%;
+//   font-family: @font-family--monospace;
+//   background-color: @color__gray;
+//   color: #fff;
+//   font-weight: 700;
 // }
 
 // figure {

@@ -2,6 +2,11 @@
 
 
 
+//------------------------------------------------------------------------------
+//  Модульная сетка (почти как в Bootstrap)
+//------------------------------------------------------------------------------
+
+
 .container-fluid {
   padding-left: (@grid-gutter-width / 2);
   padding-right: (@grid-gutter-width / 2);
@@ -136,7 +141,7 @@
 
 .make-columns(@n, @screen, @i: 1) when (@i =< @n) {
   .col-@{screen}-@{i} {
-    width: (@i * 100% / @n);
+    max-width: (@i * 100% / @n);
     flex-basis: (@i * 100% / @n);
   }
   .make-columns(@n, @screen, (@i + 1));

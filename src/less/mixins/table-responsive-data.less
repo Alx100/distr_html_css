@@ -1,0 +1,113 @@
+@import '../variables.less'; // Можно удалять, это только для удобства написания кода.
+
+
+
+//------------------------------------------------------------------------------
+//  Примесь для создания правильной адаптивной таблицы
+//------------------------------------------------------------------------------
+
+
+// ВНИМАНИЕ! Такая таблица нуждается в атрибутах data-label для каждого <td>:
+//
+// <table class="table-responsive-data">
+//   <thead>
+//     <tr>
+//       <th>First Name</th>
+//       <th>Last Name</th>
+//     </tr>
+//   </thead>
+//   <tbody>
+//     <tr>
+//       <td data-label="First Name">Mark Usa</td>
+//       <td data-label="Last Name">Ottomann</td>
+//     </tr>
+//     <tr class="row-success">
+//       <td data-label="First Name">Jacob Bi</td>
+//       <td data-label="Last Name">Thornton II</td>
+//     </tr>
+//   </tbody>
+// </table>
+
+
+
+// Принимает ширину, до которой таблица остаётся адаптированой под узкие вьюпорты
+
+.table-responsive-data(@screen: sm) {
+
+  & when (@screen = xs) {
+    @media (max-width: (@screen-sm - 1)) {
+      .table-responsive-data-properties();
+    }
+  }
+  & when (@screen = sm) {
+    @media (max-width: (@screen-md - 1)) {
+      .table-responsive-data-properties();
+    }
+  }
+  & when (@screen = md) {
+    @media (max-width: (@screen-lg - 1)) {
+      .table-responsive-data-properties();
+    }
+  }
+  & when (@screen = lg) {
+    @media (max-width: (@screen-xl - 1)) {
+      .table-responsive-data-properties();
+    }
+  }
+  & when (@screen = xl) {
+    @media (max-width: (@screen-xxl - 1)) {
+      .table-responsive-data-properties();
+    }
+  }
+  & when (@screen = xxl) {
+    @media (max-width: (@screen-xxl - 1)) {
+      .table-responsive-data-properties();
+    }
+  }
+
+}
+
+
+
+  // Сами правила адаптивной таблицы
+
+.table-responsive-data-properties() {
+  display: block;
+  border: 0;
+  overflow-x: auto; // IE11 отказывается переносить длинный текст в <td>, даём костыль
+
+  thead {
+    display: none;
+  }
+
+  tbody {
+    display: block;
+    width: 100%;
+
+    tr {
+      display: block;
+      border: 1px solid @color__gray-lighter;
+      border-top: 0;
+
+      &:not(:last-child) {
+        margin-bottom: @type-spacer;
+      }
+    }
+
+    td {
+      display: flex;
+      width: 100%;
+      text-align: right;
+
+      &:before {
+        display: block;
+        padding-right: @spacer;
+        flex: 1 0 auto;
+        text-align: left;
+        font-weight: 700;
+        white-space: nowrap;
+        content: attr(data-label);
+      }
+    }
+  }
+}

@@ -9,10 +9,11 @@
 @color__danger:               #d9534f;
 
 @color__gray:                 #808080;
-@color__gray-darker:          #222;
-@color__gray-dark:            #444;
+@color__gray-darker:          #2D2D2D;
+@color__gray-dark:            #585858;
 @color__gray-light:           #999;
 @color__gray-lighter:         #ddd;
+@color__gray-lightest:        #F3F3F3;
 
 @body-bg:                     #fff;
 @text-color:                  @color__gray-darker;
@@ -32,22 +33,26 @@
 @font-family--serif:          Georgia, "Times New Roman", Times, serif;
 @font-family--monospace:      Menlo, Monaco, Consolas, "Courier New", monospace;
 
-@font-size--html:             10px;
+@font-size-html:              10px;
+@font-size-html--sm:          10px;
+@font-size-html--md:          10px;
+@font-size-html--lg:          10px;
+@font-size-html--xl:          10px;
+@font-size-html--xxl:         10px;
 
-@font-size:                   14px;
-@font-size--large:            18px;
-@font-size--small:            12px;
+@font-size:                   1.4rem;
+@font-size--large:            1.8rem;
+@font-size--small:            1.2rem;
 
-@font-size--h1:               30px;
-@font-size--h2:               24px;
-@font-size--h3:               20px;
+@font-size--h1:               3.0rem;
+@font-size--h2:               2.4rem;
+@font-size--h3:               2.0rem;
 @font-size--h4:               @font-size--large;
 @font-size--h5:               @font-size;
 
 @line-height:                 1.4em;
-// @line-height--computed:       floor((@font-size * @line-height)); // TODO проверить необходимость
 
-@type-spacer:                 @line-height / 2; // Нижний отступ параграфа, списков, заголовков...
+@type-spacer:                 1em; // Нижний отступ параграфа, списков...
 
 @font-size--h6:               @font-size--small;
 
@@ -67,10 +72,10 @@
 //------------------------------------------------------------------------------
 
 // Абстрактный размер разделителя
-@spacer:                      10px;
+@spacer:                      1rem;
 
 // Абстрактное сглаживание углов
-@border-radius:               3px;
+@border-radius:               0.3rem;
 
 
 
@@ -81,7 +86,7 @@
 //------------------------------------------------------------------------------
 
 @grid-columns:                12;
-@grid-gutter-width:           30px;
+@grid-gutter-width:           30px; // сделать 3rem, чтобы реагировало на адаптивность типографики
 
 
 
