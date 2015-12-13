@@ -19,10 +19,13 @@
   font-size: @font-size;
   line-height: 1.5;
   border: 1px solid;
-  border-radius: @border-radius;
   // border: 1px solid transparent;
   // background-color: @color__gray-lighter;
   // color: @text-color;
+
+  & when (@border-radius > 0) {
+    border-radius: @border-radius;
+  }
 
   .btn-color-variant(@text-color; @color__gray-lighter; transparent);
 
@@ -33,7 +36,9 @@
     // border-color: transparent;
   }
 
-  &:active, &:focus {
+  &--active,
+  &:active,
+  &:focus {
     outline: thin dotted;
     outline: 5px auto -webkit-focus-ring-color;
     outline-offset: -2px;
@@ -43,9 +48,14 @@
     // border-color: transparent;
   }
 
-  &:disabled, &.disabled {
+  &--disabled,
+  &:disabled {
     cursor: not-allowed;
     opacity: .65;
+
+    a& {
+      pointer-events: none;
+    }
   }
 
 
@@ -70,11 +80,63 @@
   //   .btn-color-variant(#fff; @color__danger; transparent);
   // }
 
+  // &--lg {
+  //   font-size: @font-size--large;
+  //   padding: 1rem 2rem;
+  // }
+
+  // &--sm {
+  //   font-size: @font-size--small;
+  //   padding: .1rem .5rem;
+  // }
+
+  // &--block {
+  //   display: block;
+  //   width: 100%;
+  // }
+
 }
 
 
 
-// Генератор цветовых стилей
+
+
+//------------------------------------------------------------------------------
+//  Группы кнопок
+//------------------------------------------------------------------------------
+
+
+.btn-group {
+  display: inline-flex;
+
+  & when (@border-radius > 0) {
+
+    .btn {
+      &:first-child {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      &:last-child {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+
+      &:not(:first-child):not(:last-child) {
+        border-radius: 0;
+      }
+    }
+  }
+}
+
+
+
+
+
+//------------------------------------------------------------------------------
+//  Примесь-генератор цветовых стилей
+//------------------------------------------------------------------------------
+
 
 .btn-color-variant(@color: @text-color; @background: @color__gray-lighter; @border: @color__gray-lighter) {
   @active-background: darken(@background, 10%);
