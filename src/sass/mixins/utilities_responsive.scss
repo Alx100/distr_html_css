@@ -1,0 +1,61 @@
+@import '../variables.less'; // Можно удалять, это только для удобства написания кода.
+
+
+
+//------------------------------------------------------------------------------
+//  Примеси для сокрытия блоков на определенных вьюпортах
+//------------------------------------------------------------------------------
+
+
+// Пример: показывать только на MD ширине
+//
+// .selector {
+//   Скрыть на LG (включительно) и выше (скрыто на @screen-lg (992) и более широких)
+//   .hidden-up(lg);
+//   Скрыть на SM (включительно) и ниже (скрыто на @screen-md - 1 (768 - 1 = 767) и более узких)
+//   .hidden-down(sm);
+// }
+
+
+
+.hidden-up(@screen: xs) {
+  // & when (@screen = xs) { // XS по умолчанию 0, так что это бессмысленно
+  //   @media (min-width: @screen-xs) { display: none; }
+  // }
+  & when (@screen = sm) {
+    @media (min-width: @screen-sm) { display: none; }
+  }
+  & when (@screen = md) {
+    @media (min-width: @screen-md) { display: none; }
+  }
+  & when (@screen = lg) {
+    @media (min-width: @screen-lg) { display: none; }
+  }
+  & when (@screen = xl) {
+    @media (min-width: @screen-xl) { display: none; }
+  }
+  & when (@screen = xxl) {
+    @media (min-width: @screen-xxl) { display: none; }
+  }
+}
+
+.hidden-down(@screen: xs) {
+  & when (@screen = xs) {
+    @media (max-width: (@screen-sm - 1)) { display: none; }
+  }
+  & when (@screen = sm) {
+    @media (max-width: (@screen-md - 1)) { display: none; }
+  }
+  & when (@screen = md) {
+    @media (max-width: (@screen-lg - 1)) { display: none; }
+  }
+  & when (@screen = lg) {
+    @media (max-width: (@screen-xl - 1)) { display: none; }
+  }
+  & when (@screen = xl) {
+    @media (max-width: (@screen-xxl - 1)) { display: none; }
+  }
+  & when (@screen = xxl) {
+    @media (max-width: (@screen-xxl - 1)) { display: none; }
+  }
+}

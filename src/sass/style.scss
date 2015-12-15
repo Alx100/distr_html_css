@@ -1,9 +1,22 @@
-/* Nikolay Gromov. Author URI: http://nicothin.ru */
+// Nikolay Gromov. Author URI: http://nicothin.ru
 
 @import 'variables';
-// @import 'mixins';
 
-@import 'components/scaffolding';      // Базис
-@import 'components/type';             // Типографика
-@import 'components/forms';            // Формы
-@import 'components/tables';           // Таблицы
+@import 'mixins/buttons';
+// @import 'mixins/grid';
+// @import 'mixins/table-responsive-data';
+// @import 'mixins/utilities_responsive';
+// @import 'mixins/utilities_text';
+
+@import 'components/normalize';
+
+// @import 'components/global_scaffolding';      // Базис
+// @import 'components/global_type';             // Типографика
+// @import 'components/global_forms';            // Формы
+// @import 'components/global_tables';           // Таблицы
+// @import 'components/global_grid';             // Модульная сетка
+// @import 'components/global_layout';           // Раскладка блоков
+// @import 'components/global_print';            // Общие стили для печати
+
+@import 'components/buttons';                 // Кнопки
+// @import 'components/media';                   // Медиа-объект

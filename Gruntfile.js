@@ -6,7 +6,7 @@ module.exports = function(grunt) {
 
     sass: {
       options: {
-        sourceMap: true
+        // sourceMap: true
       },
       style: {
         files: {
@@ -73,6 +73,7 @@ module.exports = function(grunt) {
         'build/img',
         'build/js',
         'build/*.html',
+        'build/*.ico',
       ]
     },
 
@@ -80,12 +81,15 @@ module.exports = function(grunt) {
       img: {
         expand: true,
         cwd: 'src/img/',
-        src: ['**'],
+        src: ['**/*.{png,jpg,gif,svg}'],
         dest: 'build/img/',
       },
-      css_min: {
-        src: ['build/css/style.css'],
-        dest: 'build/css/style.min.css',
+      favicon: {
+        expand: true,
+        src: ['src/img/favicons/favicon.ico'],
+        dest: 'build/',
+        flatten: true,
+        filter: 'isFile'
       },
       css_add: {
         expand: true,
@@ -93,21 +97,27 @@ module.exports = function(grunt) {
         src: ['**'],
         dest: 'build/css/',
       },
+      fonts: {
+        expand: true,
+        cwd: 'src/fonts/',
+        src: ['**'],
+        dest: 'build/fonts/',
+      },
     },
 
-  imagemin: {
+    imagemin: {
       build: {
         options: {
           optimizationLevel: 3
         },
         files: [{
           expand: true,
-          src: ['build/img/*.{png,jpg,gif,svg}']
+          src: ['build/img/**/*.{png,jpg,gif,svg}']
         }]
       }
     },
 
-  includereplace: {
+    includereplace: {
       html: {
         src: '*.html',
         dest: 'build/',
@@ -201,7 +211,9 @@ module.exports = function(grunt) {
 
 
 
+
   grunt.registerTask('default', [
+    // 'copy:fonts',
     'style',
     'js',
     'img',
@@ -210,37 +222,32 @@ module.exports = function(grunt) {
     'watch'
   ]);
 
-
-
   grunt.registerTask('build', [
     'clean:build',
+    // 'copy:fonts',
     'style',
     'js',
     'img',
     'includereplace:html',
   ]);
 
-
-
   grunt.registerTask('js', [
     'concat',                 // объединяем все указанные JS-файлы в build/js/script.min.js
-    'uglify',                 // минифицируем                        build/js/script.min.js
+    'uglify',                 // минифицируем build/js/script.min.js
   ]);
 
-
-
   grunt.registerTask('style', [
+    'copy:css_add',           // копируем добавочные файлы
     'sass',                   // компилируем стили в build/css/style.css
     'postcss',                // обрабатываем postcss-ом все файлы .css в build/css/
     'cmq',                    // объединяем медиа-правила в build/css/style.css
     'cssmin',                 // минифицируем
   ]);
 
-
-
   grunt.registerTask('img', [
     'svgstore',               // собираем SVG-спрайт
     'copy:img',               // копируем всё из src/img/ в build/img/
+    'copy:favicon',           // копируем favicon
     'imagemin',               // минифицируем картинки в build/img/
   ]);
 

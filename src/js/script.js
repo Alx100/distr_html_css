@@ -1,10 +1,10 @@
-// Чтобы подгрузить jQuery, в /src/_html_inc/page_bottom.html добавить:
+// Чтобы подгрузить jQuery, в нижнюю часть всех страниц добавить:
 // <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 // <script>window.jQuery || document.write('<script src="js/jquery.2.1.3.min.js"><\/script>')</script>
 
 
 
-// Подгрузка шрифта (при использовании — поправить имя (FONTNAME) и адрес (css/FONTNAME.css).
+// Подгрузка шрифта (при использовании — поправить имя (FONTNAME) и, возможно, адрес (css/font.css).
 // Работает только при открытии страницы с сервера.
 
 // (function(){
@@ -22,7 +22,7 @@
 //         } else {
 //             // We have to first load the font file asynchronously
 //             var request = new XMLHttpRequest();
-//             request.open('GET', 'css/FONTNAME.css', true);
+//             request.open('GET', 'css/font.css', true);
 
 //             request.onload = function() {
 //                 if (request.status >= 200 && request.status < 400) {

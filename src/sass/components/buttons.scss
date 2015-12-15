@@ -1,0 +1,87 @@
+
+//------------------------------------------------------------------------------
+//  Кнопки
+//------------------------------------------------------------------------------
+
+
+.btn {
+  @include btn();
+  @include btn-color-variant($text-color, $color__gray-lighter, transparent);
+
+  // &--lg {
+  //   font-size: $font-size--large;
+  //   padding: 1rem 2rem;
+  // }
+
+  // &--sm {
+  //   font-size: $font-size--small;
+  //   padding: .1rem .5rem;
+  // }
+
+  // &--block {
+  //   display: block;
+  //   width: 100%;
+  // }
+
+}
+
+
+
+.btn-primary { // это БЭМ-блок, а не модификатор!
+  @include btn();
+  @include btn-color-variant(#fff, $color__primary, transparent);
+}
+
+.btn-success { // это БЭМ-блок, а не модификатор!
+  @include btn();
+  @include btn-color-variant(#fff, $color__success, transparent);
+}
+
+.btn-info { // это БЭМ-блок, а не модификатор!
+  @include btn();
+  @include btn-color-variant(#fff, $color__info, transparent);
+}
+
+.btn-warning { // это БЭМ-блок, а не модификатор!
+  @include btn();
+  @include btn-color-variant(#fff, $color__warning, transparent);
+}
+
+.btn-danger { // это БЭМ-блок, а не модификатор!
+  @include btn();
+  @include btn-color-variant(#fff, $color__danger, transparent);
+}
+
+
+
+
+
+//------------------------------------------------------------------------------
+//  Группы кнопок
+//------------------------------------------------------------------------------
+
+
+// .btn-group {
+//   display: inline-flex;
+
+//   // Обнуление сглаженных углов только если они были сглажены
+//   & when (@border-radius > 0) {
+
+//     .btn {
+//       &:first-child {
+//         border-top-right-radius: 0;
+//         border-bottom-right-radius: 0;
+//       }
+
+//       &:last-child {
+//         border-top-left-radius: 0;
+//         border-bottom-left-radius: 0;
+//       }
+
+//       &:not(:first-child):not(:last-child) {
+//         border-radius: 0;
+//       }
+//     }
+//   }
+
+// }

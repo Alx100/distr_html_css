@@ -1,0 +1,117 @@
+//------------------------------------------------------------------------------
+//  Цвет
+//------------------------------------------------------------------------------
+
+$color__primary:              #0275d8;
+$color__success:              #5cb85c;
+$color__info:                 #5bc0de;
+$color__warning:              #f0ad4e;
+$color__danger:               #d9534f;
+
+$color__gray:                 #808080;
+$color__gray-darker:          #2D2D2D;
+$color__gray-dark:            #585858;
+$color__gray-light:           #999;
+$color__gray-lighter:         #ddd;
+$color__gray-lightest:        #F3F3F3;
+
+$body-bg:                     #fff;
+$text-color:                  $color__gray-darker;
+
+$link-color:                  $color__primary;
+$link-color--hover:           darken($link-color, 20%);
+
+
+
+
+
+//------------------------------------------------------------------------------
+//  Типографика
+//------------------------------------------------------------------------------
+
+$font-family:                 "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family--serif:          Georgia, "Times New Roman", Times, serif;
+$font-family--monospace:      Menlo, Monaco, Consolas, "Courier New", monospace;
+
+$font-size-html:              10px;
+$font-size-html--sm:          10px;
+$font-size-html--md:          10px;
+$font-size-html--lg:          10px;
+$font-size-html--xl:          10px;
+$font-size-html--xxl:         10px;
+
+$font-size:                   1.4rem;
+$font-size--large:            1.8rem;
+$font-size--small:            1.2rem;
+
+$font-size--h1:               3.0rem;
+$font-size--h2:               2.4rem;
+$font-size--h3:               2.0rem;
+$font-size--h4:               $font-size--large;
+$font-size--h5:               $font-size;
+
+$line-height:                 1.4em;
+
+$type-spacer:                 1em; // Нижний отступ параграфа, списков...
+
+$font-size--h6:               $font-size--small;
+
+$headings__font-family:       $font-family;
+$headings__margin-top:        1.5em;
+$headings__margin-bottom:     1em;
+$headings__font-weight:       400;
+$headings__line-height:       1.2em;
+$headings__color:             inherit;
+
+
+
+
+
+//------------------------------------------------------------------------------
+//  Разное
+//------------------------------------------------------------------------------
+
+// Абстрактный размер разделителя
+$spacer:                      1rem;
+
+// Абстрактное сглаживание углов
+$border-radius:               0.3rem;
+
+
+
+
+
+//------------------------------------------------------------------------------
+//  Модульные сетки
+//------------------------------------------------------------------------------
+
+$grid-columns:                12;
+$grid-gutter-width:           30px; // сделать 3rem, чтобы реагировало на адаптивность типографики
+
+
+
+
+
+//------------------------------------------------------------------------------
+//  Адаптивность (воу-воу, не обязательно использовать все брейкпоинты)
+//------------------------------------------------------------------------------
+
+$screen-xs:                   0;
+$screen-sm:                   480px;
+$screen-md:                   768px;
+$screen-lg:                   992px;
+$screen-xl:                   1200px;
+$screen-xxl:                  1890px;
+
+
+
+
+
+//------------------------------------------------------------------------------
+//  КОМПОНЕНТ: Бейджи (тест)
+//------------------------------------------------------------------------------
+
+$badge__color:                #fff;
+$badge__bg:                   $color__gray;
+$badge__font-weight:          bold;
+$badge__border-radius:        3px;

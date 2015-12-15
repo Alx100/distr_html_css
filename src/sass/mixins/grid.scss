@@ -1,0 +1,90 @@
+@import '../variables.less'; // Можно удалять, это только для удобства написания кода.
+
+
+
+//------------------------------------------------------------------------------
+//  Примеси-генераторы правил элементов модульной сетки
+//------------------------------------------------------------------------------
+
+
+// Генератор правил для ячейки
+// Возвращает правила для ячейки
+//
+// Принимает:
+// @column:      1                     - ширина (кол-во колонок для этой ячейки)
+// @columns:     @grid-columns;        - общее количество ячеек на 1 ряд
+// @gutter:      @grid-gutter-width    - промежуток между ячейками
+
+.make-col(@column: 1; @columns: @grid-columns; @gutter: @grid-gutter-width) {
+  @width: (100% / @columns) * @column;
+  flex: 0 0 @width;
+  max-width: @width;
+
+  // ВНИМАНИЕ! если передан false вместо значения @gutter,
+  // в CSS не попадут правила padding-left и padding-right
+  & when not (@gutter = false) {
+    padding-left: (@gutter / 2);
+    padding-right: (@gutter / 2);
+  }
+}
+
+
+
+// Генератор правил родителя ячеек
+// Возвращает правила родителя
+//
+// Принимает:
+// @gutter: @grid-gutter-width      - промежуток между ячейками
+
+.row(@gutter: @grid-gutter-width) {
+  display: flex;
+  flex-wrap: wrap;
+
+  // ВНИМАНИЕ! если передан false, в CSS не попадут правила margin-ы
+  & when not (@gutter = false) {
+    margin-left: (@gutter / -2);
+    margin-right: (@gutter / -2);
+  }
+}
+
+
+
+// Генератор ячейки модульной сетки с возможностью указать @media
+// Возвращает правила для ячейки
+//
+// Принимает:
+// @screen:      xs                    - тип сетки [xs|sm|md|lg|xl|xxl]
+// @column:      1                     - ширина (кол-во колонок для этой ячейки)
+// @columns:     @grid-columns;        - общее количество ячеек на 1 ряд
+// @gutter:      @grid-gutter-width    - промежуток между ячейками
+
+.col(@screen: xs; @column: 1; @columns: @grid-columns; @gutter: @grid-gutter-width) {
+  & when (@screen = xs) {
+    .make-col(@column; @columns; @gutter);
+  }
+  & when (@screen = sm) {
+    @media (min-width: @screen-sm) {
+      .make-col(@column; @columns; @gutter);
+    }
+  }
+  & when (@screen = md) {
+    @media (min-width: @screen-md) {
+      .make-col(@column; @columns; @gutter);
+    }
+  }
+  & when (@screen = lg) {
+    @media (min-width: @screen-lg) {
+      .make-col(@column; @columns; @gutter);
+    }
+  }
+  & when (@screen = xl) {
+    @media (min-width: @screen-xl) {
+      .make-col(@column; @columns; @gutter);
+    }
+  }
+  & when (@screen = xxl) {
+    @media (min-width: @screen-xxl) {
+      .make-col(@column; @columns; @gutter);
+    }
+  }
+}

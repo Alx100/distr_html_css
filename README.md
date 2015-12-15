@@ -45,9 +45,9 @@ grunt build    # стирание папки build и запуск всех за
 
 `src/less/style.less` — диспетчер подключений, в нем только импортируются другие файлы. Компилируется в `build/css/style.css`, потом оптимизируется в `build/css/style.min.css`, который и подключается к HTML.
 
-`src/less/components` — less-файлы, описывающие стили блоков страницы (отдельные и глобальные).
+`src/less/components` — файлы, описывающие стили блоков страницы (отдельные и глобальные).
 
-`src/less/mixins.less` — примеси.
+`src/less/mixins` — примеси.
 
 
 
@@ -65,10 +65,12 @@ grunt build    # стирание папки build и запуск всех за
 
 ## Шрифты
 
-Нижеследующие принципы не обязательны, но хороши и желательны.
+Предполагается следующий матод работы со шрифтами:
 
 1. Используем шрифты в формате woff, ибо [caniuse.com/woff](http://caniuse.com/#feat=woff).
-2. Отдаем шрифты со своего сайта в виде CSS-файла с base64 данными. Преобразуем [fontsquirrel.com](http://www.fontsquirrel.com/tools/webfont-generator). Конфиг генератора — файл 'fontsquirrel_config.txt'.
+2. Отдаем шрифты со своего сайта в виде CSS-файла с base64 данными. Файл получаем с помощью [fontsquirrel.com](http://www.fontsquirrel.com/tools/webfont-generator). Конфиг генератора — файл 'fontsquirrel_config.txt'.
 3. Если у пользователя нет шрифта, загружаем его асинхронно и сохраняем в localStorage, иначе загружаем его из localStorage без обращения к серверу (см. `src\js\script.js`, блок подгрузки шрифта закомментирован).
 
-Взято с [css-live.ru](http://css-live.ru/articles-css/bystraya-zagruzka-veb-shriftov-na-adaptivnyx-sajtax.html).
+Источник: [css-live.ru](http://css-live.ru/articles-css/bystraya-zagruzka-veb-shriftov-na-adaptivnyx-sajtax.html).
+
+Для традиционного подключения шрифта со своего хоста нужно раскомментировать в задачах `Gruntfile.js` копирование файлов шрифта.
