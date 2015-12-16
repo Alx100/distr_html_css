@@ -3,7 +3,7 @@
 
 
 //------------------------------------------------------------------------------
-//  Общие стили форм, общие БЭМ-блоки форм
+//  Общие стили форм
 //------------------------------------------------------------------------------
 
 label {
@@ -41,4 +41,125 @@ textarea {
 
 input[type="search"] {
   -webkit-appearance: none;
+}
+
+
+
+
+
+//------------------------------------------------------------------------------
+//  БЭМ-блок поля формы
+//------------------------------------------------------------------------------
+
+.field {
+  display: block;
+  width: 100%;
+  margin-bottom: @type-spacer;
+
+  // Модификаторы для чекбоксов и радиокнопок
+  &--radio {
+    & + & {
+      margin-top: (@type-spacer * -.5);
+    }
+    input {
+      vertical-align: middle;
+    }
+    .field__label {
+      margin-bottom: 0;
+    }
+  }
+  &--checkbox {
+    & + & {
+      margin-top: (@type-spacer * -.5);
+    }
+    input {
+      vertical-align: middle;
+    }
+    .field__label {
+      margin-bottom: 0;
+    }
+  }
+
+  // Название поля
+  &__label {
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 1rem;
+  }
+
+  // Текстовые поля и селект (общие свойства)
+  &__input-text,
+  &__select,
+  &__textarea {
+    display: block;
+    width: 100%;
+    padding: @field-padding;
+    font-size: @font-size;
+    line-height: @field-line-height;
+    color: @text-color;
+    background-image: none;
+    background-color: #fff;
+    border: @field-border;
+    border-radius: @border-radius;
+
+    &::placeholder {
+      color: @color__gray-light;
+      opacity: 1;
+    }
+
+    &:focus {
+      border-color: @field-focus-border-color;
+      .focus();
+    }
+
+    &:disabled,
+    &[readonly] {
+      background-color: @color__gray-lightest;
+      opacity: 1;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: @opacity;
+    }
+  }
+
+  // Текстовые поля и селект (фиксируем высоту тем, кому нужно)
+  &__input-text {
+    height: @field-height;
+  }
+  &__select {
+    &:not([size]),
+    &:not([multiple]) {
+      height: @field-height;
+    }
+  }
+
+  // Селект — убираем убожество окантовки стрелки в IE10+
+  &__select {
+    &::-ms-expand {
+      background-color: transparent;
+      border: 0;
+    }
+  }
+
+  // Файл
+  &__file {
+    display: block;
+    width: 100%;
+
+    &:focus {
+      .focus();
+    }
+  }
+
+  // Описание под полем
+  &__description {
+    display: block;
+    font-size: @font-size--small;
+    color: @color__gray-light;
+    margin: 0;
+    padding: .5rem 0 0;
+  }
+
 }
