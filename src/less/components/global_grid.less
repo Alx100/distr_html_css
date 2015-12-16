@@ -3,103 +3,110 @@
 
 
 //------------------------------------------------------------------------------
-//  Модульная сетка (почти как в Bootstrap)
+//  Модульная сетка (вдохновленная Bootstrap)
 //------------------------------------------------------------------------------
 
 
+// Резиновый контейнер
 .container-fluid {
-  padding-left: (@grid-gutter-width / 2);
-  padding-right: (@grid-gutter-width / 2);
+  .container-fluid();
 }
 
+
+
+// Фиксированный (на некоторых ширинах) контейнер
 .container {
-  padding-left: (@grid-gutter-width / 2);
-  padding-right: (@grid-gutter-width / 2);
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-
-  // @media (min-width: @screen-sm) {
-  //   width: 100%;
-  // }
-  @media (min-width: @screen-md) {
-    width: @screen-md;
-  }
-  @media (min-width: @screen-lg) {
-    width: @screen-lg;
-  }
-  @media (min-width: @screen-xl) {
-    width: @screen-xl;
-  }
-  // @media (min-width: @screen-xxl) {
-  //   width: @screen-xxl;
-  // }
+  .container();
 }
 
+
+
+// Правила для родителя ячеек модульной сетки
 .row {
   .row();
 }
 
-.make-grid(xs);
-.make-grid(sm);
-.make-grid(md);
-.make-grid(lg);
-.make-grid(xl);
-// .make-grid(xxl);
 
-.make-columns(@grid-columns, xs);
-.col-xs {
-  flex: 1 0 auto;
-  width: auto;
-  padding-left: (@grid-gutter-width / 2);
-  padding-right: (@grid-gutter-width / 2);
-}
+
+// Общие правила для всех селекторов сетки на разных ширинах
+// .make-column-list-general-rules(xs);
+// .make-column-list-general-rules(sm);
+// .make-column-list-general-rules(md);
+// .make-column-list-general-rules(lg);
+// .make-column-list-general-rules(xl);
+// .make-column-list-general-rules(xxl);
+
+
+
+// Индивидуальные правила для селекторов сетки (ширина ячеек)
+// .make-columns(@grid-columns, xs);
+// .col-xs {
+//   flex: 1 0 auto;
+//   width: auto;
+//   padding-left: (@grid-gutter-width / 2);
+//   padding-right: (@grid-gutter-width / 2);
+// }
 // .make-offsets(@grid-columns, xs);
 
-@media (min-width: @screen-sm) {
-  .make-columns(@grid-columns, sm);
-  .col-sm {
-    flex: 1 0 auto;
-    width: auto;
-    padding-left: (@grid-gutter-width / 2);
-    padding-right: (@grid-gutter-width / 2);
-  }
-  // .make-offsets(@grid-columns, sm);
-}
 
-@media (min-width: @screen-md) {
-  .make-columns(@grid-columns, md);
-  .col-md {
-    flex: 1 0 auto;
-    width: auto;
-    padding-left: (@grid-gutter-width / 2);
-    padding-right: (@grid-gutter-width / 2);
-  }
-  // .make-offsets(@grid-columns, md);
-}
 
-@media (min-width: @screen-lg) {
-  .make-columns(@grid-columns, lg);
-  .col-lg {
-    flex: 1 0 auto;
-    width: auto;
-    padding-left: (@grid-gutter-width / 2);
-    padding-right: (@grid-gutter-width / 2);
-  }
-  // .make-offsets(@grid-columns, lg);
-}
+// Индивидуальные правила для селекторов сетки (ширина ячеек)
+// @media (min-width: @screen-sm) {
+//   .make-columns(@grid-columns, sm);
+//   .col-sm {
+//     flex: 1 0 auto;
+//     width: auto;
+//     padding-left: (@grid-gutter-width / 2);
+//     padding-right: (@grid-gutter-width / 2);
+//   }
+//   // .make-offsets(@grid-columns, sm);
+// }
 
-@media (min-width: @screen-xl) {
-  .make-columns(@grid-columns, xl);
-  .col-xl {
-    flex: 1 0 auto;
-    width: auto;
-    padding-left: (@grid-gutter-width / 2);
-    padding-right: (@grid-gutter-width / 2);
-  }
-  // .make-offsets(@grid-columns, xl);
-}
 
+
+// Индивидуальные правила для селекторов сетки (ширина ячеек)
+// @media (min-width: @screen-md) {
+//   .make-columns(@grid-columns, md);
+//   .col-md {
+//     flex: 1 0 auto;
+//     width: auto;
+//     padding-left: (@grid-gutter-width / 2);
+//     padding-right: (@grid-gutter-width / 2);
+//   }
+//   // .make-offsets(@grid-columns, md);
+// }
+
+
+
+// Индивидуальные правила для селекторов сетки (ширина ячеек)
+// @media (min-width: @screen-lg) {
+//   .make-columns(@grid-columns, lg);
+//   .col-lg {
+//     flex: 1 0 auto;
+//     width: auto;
+//     padding-left: (@grid-gutter-width / 2);
+//     padding-right: (@grid-gutter-width / 2);
+//   }
+//   // .make-offsets(@grid-columns, lg);
+// }
+
+
+
+// Индивидуальные правила для селекторов сетки (ширина ячеек)
+// @media (min-width: @screen-xl) {
+//   .make-columns(@grid-columns, xl);
+//   .col-xl {
+//     flex: 1 0 auto;
+//     width: auto;
+//     padding-left: (@grid-gutter-width / 2);
+//     padding-right: (@grid-gutter-width / 2);
+//   }
+//   // .make-offsets(@grid-columns, xl);
+// }
+
+
+
+// Индивидуальные правила для селекторов сетки (ширина ячеек)
 // @media (min-width: @screen-xxl) {
 //   .make-columns(@grid-columns, xxl);
 //   .col-xxl {
@@ -110,46 +117,3 @@
 //   }
 //   .make-offsets(@grid-columns, xxl);
 // }
-
-
-
-
-
-//------------------------------------------------------------------------------
-//  Служебные примеси, используемые только в этом файле
-//------------------------------------------------------------------------------
-
-.make-grid(@screen: xs) {
-  .column-list(@index) {
-    @item: ~".col-@{screen}-@{index}";
-    .column-list((@index + 1), @item);
-  }
-  .column-list(@index, @list) when (@index =< @grid-columns) {
-    @item: ~".col-@{screen}-@{index}";
-    .column-list((@index + 1), ~"@{list}, @{item}");
-  }
-  .column-list(@index, @list) when (@index > @grid-columns) {
-    @{list} {
-      flex: 0 0 100%;
-      width: 100%;
-      padding-left: (@grid-gutter-width / 2);
-      padding-right: (@grid-gutter-width / 2);
-    }
-  }
-  .column-list(1);
-}
-
-.make-columns(@n, @screen, @i: 1) when (@i =< @n) {
-  .col-@{screen}-@{i} {
-    max-width: (@i * 100% / @n);
-    flex-basis: (@i * 100% / @n);
-  }
-  .make-columns(@n, @screen, (@i + 1));
-}
-
-.make-offsets(@n, @screen, @i: 1) when (@i =< @n) {
-  .col-@{screen}-offset-@{i} {
-    margin-left: (@i * 100% / @n);
-  }
-  .make-offsets(@n, @screen, (@i + 1));
-}

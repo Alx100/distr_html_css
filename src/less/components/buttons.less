@@ -3,7 +3,7 @@
 
 
 //------------------------------------------------------------------------------
-//  Кнопки
+//  Кнопка
 //------------------------------------------------------------------------------
 
 
@@ -29,6 +29,7 @@
 
   .btn-color-variant(@text-color; @color__gray-lighter; transparent);
 
+  // &--hover,
   &:hover {
     text-decoration: none;
     // color: @text-color;
@@ -36,7 +37,7 @@
     // border-color: transparent;
   }
 
-  &--active,
+  // &--active,
   &:active,
   &:focus {
     outline: thin dotted;
@@ -48,7 +49,7 @@
     // border-color: transparent;
   }
 
-  &--disabled,
+  // &--disabled,
   &:disabled {
     cursor: not-allowed;
     opacity: .65;
@@ -133,34 +134,4 @@
 
 
 
-//------------------------------------------------------------------------------
-//  Примесь-генератор цветовых стилей
-//------------------------------------------------------------------------------
 
-
-.btn-color-variant(@color: @text-color; @background: @color__gray-lighter; @border: @color__gray-lighter) {
-  @active-background: darken(@background, 10%);
-  @active-border: darken(@border, 12%);
-
-  color: @color;
-  background-color: @background;
-  border-color: @border;
-
-  &:hover {
-    color: @color;
-    background-color: darken(@background, 10%);
-    border-color: darken(@border, 12%);
-  }
-
-  &:active, &:focus {
-    color: @color;
-    background-color: darken(@background, 15%);
-    border-color: darken(@border, 17%);
-  }
-
-  &:disabled, &.disabled {
-    color: @color;
-    background-color: @background;
-    border-color: @border;
-  }
-}

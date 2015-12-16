@@ -1,0 +1,36 @@
+@import '../variables.less'; // Можно удалять, это только для удобства написания кода.
+
+
+
+//------------------------------------------------------------------------------
+//  Примесь-генератор цветовых стилей
+//------------------------------------------------------------------------------
+
+
+.btn-color-variant(@color: @text-color; @background: @color__gray-lighter; @border: @color__gray-lighter) {
+
+  color: @color;
+  background-color: @background;
+  border-color: @border;
+
+  &:hover {
+    color: @color;
+    background-color: darken(@background, 10%);
+    border-color: darken(@border, 12%);
+  }
+
+  // &--active,
+  &:active,
+  &:focus {
+    color: @color;
+    background-color: darken(@background, 15%);
+    border-color: darken(@border, 17%);
+  }
+
+  // &--disabled,
+  &:disabled {
+    color: @color;
+    background-color: @background;
+    border-color: @border;
+  }
+}
