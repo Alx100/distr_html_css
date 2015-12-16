@@ -3,108 +3,89 @@
 
 
 //------------------------------------------------------------------------------
-//  Модульная сетка (вдохновленная Bootstrap)
+//  Модульная сетка, вдохновленная Bootstrap (по умолчанию без offsets-ов)
 //------------------------------------------------------------------------------
-
 
 // Резиновый контейнер
 .container-fluid {
   .container-fluid();
 }
 
-
-
 // Фиксированный (на некоторых ширинах) контейнер
 .container {
   .container();
 }
-
-
 
 // Правила для родителя ячеек модульной сетки
 .row {
   .row();
 }
 
-
-
 // Общие правила для всех селекторов сетки на разных ширинах
-// .make-column-list-general-rules(xs);
-// .make-column-list-general-rules(sm);
-// .make-column-list-general-rules(md);
-// .make-column-list-general-rules(lg);
-// .make-column-list-general-rules(xl);
+.make-column-list-general-rules(xs);
+.make-column-list-general-rules(sm);
+.make-column-list-general-rules(md);
+.make-column-list-general-rules(lg);
+.make-column-list-general-rules(xl);
 // .make-column-list-general-rules(xxl);
 
-
-
 // Индивидуальные правила для селекторов сетки (ширина ячеек)
-// .make-columns(@grid-columns, xs);
-// .col-xs {
-//   flex: 1 0 auto;
-//   width: auto;
-//   padding-left: (@grid-gutter-width / 2);
-//   padding-right: (@grid-gutter-width / 2);
-// }
+.make-columns(@grid-columns, xs);
+.col-xs {
+  flex: 1 0 auto;
+  width: auto;
+  padding-left: (@grid-gutter-width / 2);
+  padding-right: (@grid-gutter-width / 2);
+}
 // .make-offsets(@grid-columns, xs);
 
-
+// Индивидуальные правила для селекторов сетки (ширина ячеек)
+@media (min-width: @screen-sm) {
+  .make-columns(@grid-columns, sm);
+  .col-sm {
+    flex: 1 0 auto;
+    width: auto;
+    padding-left: (@grid-gutter-width / 2);
+    padding-right: (@grid-gutter-width / 2);
+  }
+  // .make-offsets(@grid-columns, sm);
+}
 
 // Индивидуальные правила для селекторов сетки (ширина ячеек)
-// @media (min-width: @screen-sm) {
-//   .make-columns(@grid-columns, sm);
-//   .col-sm {
-//     flex: 1 0 auto;
-//     width: auto;
-//     padding-left: (@grid-gutter-width / 2);
-//     padding-right: (@grid-gutter-width / 2);
-//   }
-//   // .make-offsets(@grid-columns, sm);
-// }
-
-
+@media (min-width: @screen-md) {
+  .make-columns(@grid-columns, md);
+  .col-md {
+    flex: 1 0 auto;
+    width: auto;
+    padding-left: (@grid-gutter-width / 2);
+    padding-right: (@grid-gutter-width / 2);
+  }
+  // .make-offsets(@grid-columns, md);
+}
 
 // Индивидуальные правила для селекторов сетки (ширина ячеек)
-// @media (min-width: @screen-md) {
-//   .make-columns(@grid-columns, md);
-//   .col-md {
-//     flex: 1 0 auto;
-//     width: auto;
-//     padding-left: (@grid-gutter-width / 2);
-//     padding-right: (@grid-gutter-width / 2);
-//   }
-//   // .make-offsets(@grid-columns, md);
-// }
-
-
+@media (min-width: @screen-lg) {
+  .make-columns(@grid-columns, lg);
+  .col-lg {
+    flex: 1 0 auto;
+    width: auto;
+    padding-left: (@grid-gutter-width / 2);
+    padding-right: (@grid-gutter-width / 2);
+  }
+  // .make-offsets(@grid-columns, lg);
+}
 
 // Индивидуальные правила для селекторов сетки (ширина ячеек)
-// @media (min-width: @screen-lg) {
-//   .make-columns(@grid-columns, lg);
-//   .col-lg {
-//     flex: 1 0 auto;
-//     width: auto;
-//     padding-left: (@grid-gutter-width / 2);
-//     padding-right: (@grid-gutter-width / 2);
-//   }
-//   // .make-offsets(@grid-columns, lg);
-// }
-
-
-
-// Индивидуальные правила для селекторов сетки (ширина ячеек)
-// @media (min-width: @screen-xl) {
-//   .make-columns(@grid-columns, xl);
-//   .col-xl {
-//     flex: 1 0 auto;
-//     width: auto;
-//     padding-left: (@grid-gutter-width / 2);
-//     padding-right: (@grid-gutter-width / 2);
-//   }
-//   // .make-offsets(@grid-columns, xl);
-// }
-
-
+@media (min-width: @screen-xl) {
+  .make-columns(@grid-columns, xl);
+  .col-xl {
+    flex: 1 0 auto;
+    width: auto;
+    padding-left: (@grid-gutter-width / 2);
+    padding-right: (@grid-gutter-width / 2);
+  }
+  // .make-offsets(@grid-columns, xl);
+}
 
 // Индивидуальные правила для селекторов сетки (ширина ячеек)
 // @media (min-width: @screen-xxl) {

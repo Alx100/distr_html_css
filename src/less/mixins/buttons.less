@@ -3,16 +3,77 @@
 
 
 //------------------------------------------------------------------------------
-//  Примесь-генератор цветовых стилей
+//  Общие стиля любой кнопки
+//------------------------------------------------------------------------------
+//  Закомментированы строки, служащие для одного цветового оформления кнопок.
+//  Закомментированы строки с селекторами наведения, активности, блокированности.
 //------------------------------------------------------------------------------
 
+.btn() {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 400;
+  padding: 0.5rem 1.5rem;
+  font-size: @font-size;
+  line-height: 1.5;
+  border: 1px solid;
+  // border: 1px solid transparent;
+  // background-color: @color__gray-lighter;
+  // color: @text-color;
+
+  & when (@border-radius > 0) {
+    border-radius: @border-radius;
+  }
+
+  // &--hover,
+  &:hover {
+    text-decoration: none;
+    // color: @text-color;
+    // background-color: darken(@color__gray-lighter, 10%);
+    // border-color: transparent;
+  }
+
+  // &--active,
+  &:active,
+  &:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+    text-decoration: none;
+    // color: @text-color;
+    // background-color: darken(@color__gray-lighter, 15%);
+    // border-color: transparent;
+  }
+
+  // &--disabled,
+  &:disabled {
+    cursor: not-allowed;
+    opacity: .65;
+
+    a& {
+      pointer-events: none;
+    }
+  }
+}
+
+
+
+//------------------------------------------------------------------------------
+//  Примесь-генератор цветовых стилей
+//------------------------------------------------------------------------------
+//  Закомментированы строки с селекторами наведения, активности, блокированности.
+//------------------------------------------------------------------------------
 
 .btn-color-variant(@color: @text-color; @background: @color__gray-lighter; @border: @color__gray-lighter) {
-
   color: @color;
   background-color: @background;
   border-color: @border;
 
+  // &--hover,
   &:hover {
     color: @color;
     background-color: darken(@background, 10%);

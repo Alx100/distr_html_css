@@ -5,7 +5,8 @@
 //------------------------------------------------------------------------------
 //  Генераторы правил для контейнеров
 //------------------------------------------------------------------------------
-
+//  .container[-fluid]>.row>.col-[xs|sm|md|lg|xl|xxl]-[1...@grid-columns]
+//------------------------------------------------------------------------------
 
 .container-fluid() {
   display: block;
@@ -19,28 +20,28 @@
   margin-left: auto;
   margin-right: auto;
 
-  // Добавляем в @media только если нужно
-  & when not (@container-sm = 100%) and not (@container-sm = @screen-sm) {
+  // Добавляем в @media только если нужно: ширина не 100%
+  & when not (@container-sm = 100%) {
     @media (min-width: @screen-sm) {
       width: @container-sm;
     }
   }
-  & when not (@container-md = 100%) and not (@container-md = @screen-md) {
+  & when not (@container-md = 100%) {
     @media (min-width: @screen-md) {
       width: @container-md;
     }
   }
-  & when not (@container-lg = 100%) and not (@container-lg = @screen-lg) {
+  & when not (@container-lg = 100%) {
     @media (min-width: @screen-lg) {
       width: @container-lg;
     }
   }
-  & when not (@container-xl = 100%) and not (@container-xl = @screen-xl) {
+  & when not (@container-xl = 100%) {
     @media (min-width: @screen-xl) {
       width: @container-xl;
     }
   }
-  & when not (@container-xxl = 100%) and not (@container-xxl = @screen-xxl) {
+  & when not (@container-xxl = 100%) {
     @media (min-width: @screen-xxl) {
       width: @container-xxl;
     }
@@ -49,44 +50,18 @@
 
 
 
-
-
 //------------------------------------------------------------------------------
-//  Примеси-генераторы правил для элементов модульной сетки
+//  Генератор правил для прямого родителя модульной сетки
 //------------------------------------------------------------------------------
-
-
-// Генератор правил для одной конкретной ячейки
-//
-// Принимает:
-// @column:      1                     - ширина (кол-во колонок для этой ячейки)
-// @columns:     @grid-columns;        - общее количество ячеек на 1 ряд
-// @gutter:      @grid-gutter-width    - промежуток между ячейками
-
-// .make-col(@column: 1; @columns: @grid-columns; @gutter: @grid-gutter-width) {
-//   @width: (100% / @columns) * @column;
-//   flex: 0 0 @width;
-//   max-width: @width;
-
-//   // ВНИМАНИЕ! если @gutter = false, в CSS не попадут правила padding-left и padding-right
-//   & when not (@gutter = false) {
-//     padding-left: (@gutter / 2);
-//     padding-right: (@gutter / 2);
-//   }
-// }
-
-
-
-// Генератор правил для родителя ячеек
-//
-// Принимает:
-// @gutter:     @grid-gutter-width      - промежуток между ячейками
+//  Принимает:
+//  @gutter:     @grid-gutter-width      - промежуток между ячейками
+//------------------------------------------------------------------------------
 
 .row(@gutter: @grid-gutter-width) {
   display: flex;
   flex-wrap: wrap;
 
-  // ВНИМАНИЕ! если передан false, в CSS не попадут правила margin-ы
+  // ВНИМАНИЕ! если передан false, в CSS не попадут margin-ы
   & when not (@gutter = false) {
     margin-left: (@gutter / -2);
     margin-right: (@gutter / -2);
@@ -95,106 +70,150 @@
 
 
 
-// Генератор правил для одной конкретной ячейки с возможностью указать @media
+//------------------------------------------------------------------------------
+//  Генератор ширины ячейки
+//------------------------------------------------------------------------------
+//  Принимает:
+//  @column:      1                     - ширина (кол-во колонок в этой ячейке)
+//  @columns:     @grid-columns;        - количество ячеек в ряду
 //
-// Принимает:
-// @screen:      xs                    - тип сетки [xs|sm|md|lg|xl|xxl]
-// @column:      1                     - ширина (кол-во колонок для этой ячейки)
-// @columns:     @grid-columns;        - общее количество ячеек на 1 ряд
-// @gutter:      @grid-gutter-width    - промежуток между ячейками
+//  Возвращает переменную @width в контекст вызова.
+//------------------------------------------------------------------------------
 
-// .col(@screen: xs; @column: 1; @columns: @grid-columns; @gutter: @grid-gutter-width) {
-//   & when (@screen = xs) {
-//     .make-col(@column; @columns; @gutter);
-//   }
-//   & when (@screen = sm) {
-//     @media (min-width: @screen-sm) {
-//       .make-col(@column; @columns; @gutter);
-//     }
-//   }
-//   & when (@screen = md) {
-//     @media (min-width: @screen-md) {
-//       .make-col(@column; @columns; @gutter);
-//     }
-//   }
-//   & when (@screen = lg) {
-//     @media (min-width: @screen-lg) {
-//       .make-col(@column; @columns; @gutter);
-//     }
-//   }
-//   & when (@screen = xl) {
-//     @media (min-width: @screen-xl) {
-//       .make-col(@column; @columns; @gutter);
-//     }
-//   }
-//   & when (@screen = xxl) {
-//     @media (min-width: @screen-xxl) {
-//       .make-col(@column; @columns; @gutter);
-//     }
-//   }
-// }
-
-
+.get-width(@column: 1, @columns: @grid-columns) {
+  @width: (100% / @columns) * @column;
+}
 
 
 
 //------------------------------------------------------------------------------
-//  Дополнительные генераторы
+//  Генератор правил для одной ячейки
+//------------------------------------------------------------------------------
+//  Принимает:
+//  @column:      1                     - ширина (кол-во колонок для этой ячейки)
+//  @columns:     @grid-columns;        - общее количество ячеек на 1 ряд
+//  @gutter:      @grid-gutter-width    - промежуток между ячейками (для padding-left и padding-right)
 //------------------------------------------------------------------------------
 
+.make-col(@column: 1, @columns: @grid-columns, @gutter: @grid-gutter-width) {
+  .get-width(@column, @columns); // Вернёт @width с шириной в процентах
 
-// Генератор списка селекторов и их общих свойств (без ширин)
-//
-// Принимает:
-// @screen:      xs                    - тип сетки [xs|sm|md|lg|xl|xxl]
+  flex: 0 0 @width;
+  max-width: @width;
 
-// .make-column-list-general-rules(@screen: xs) {
-//   .column-list(@index) {
-//     @item: ~".col-@{screen}-@{index}";
-//     .column-list((@index + 1), @item);
-//   }
-//   .column-list(@index, @list) when (@index =< @grid-columns) {
-//     @item: ~".col-@{screen}-@{index}";
-//     .column-list((@index + 1), ~"@{list}, @{item}");
-//   }
-//   .column-list(@index, @list) when (@index > @grid-columns) {
-//     @{list} {
-//       flex: 0 0 100%;
-//       width: 100%;
-//       padding-left: (@grid-gutter-width / 2);
-//       padding-right: (@grid-gutter-width / 2);
-//     }
-//   }
-//   .column-list(1);
-// }
+  // ВНИМАНИЕ! если @gutter = false, в CSS не попадут правила padding-left и padding-right
+  & when not (@gutter = false) {
+    padding-left: (@gutter / 2);
+    padding-right: (@gutter / 2);
+  }
+}
 
 
 
-// Генератор списка селекторов сетки и их индивидуальных свойств (ширин)
-//
-// Принимает:
-// @n:                                 - количество колонок
-// @screen:      xs                    - тип сетки [xs|sm|md|lg|xl|xxl]
+//------------------------------------------------------------------------------
+//  Генератор правил для одной ячейки с возможностью указать @media
+//------------------------------------------------------------------------------
+//  Принимает:
+//  @screen:      xs                    - тип сетки [xs|sm|md|lg|xl|xxl]
+//  @column:      1                     - ширина (кол-во колонок для этой ячейки)
+//  @columns:     @grid-columns;        - общее количество ячеек на 1 ряд
+//  @gutter:      @grid-gutter-width    - промежуток между ячейками (для padding-left и padding-right)
+//------------------------------------------------------------------------------
 
-// .make-columns(@n, @screen, @i: 1) when (@i =< @n) {
-//   .col-@{screen}-@{i} {
-//     max-width: (@i * 100% / @n);
-//     flex-basis: (@i * 100% / @n);
-//   }
-//   .make-columns(@n, @screen, (@i + 1));
-// }
+.col(@screen: xs, @column: 1, @columns: @grid-columns, @gutter: @grid-gutter-width) {
+  & when (@screen = xs) {
+    .make-col(@column, @columns, @gutter);
+  }
+  & when (@screen = sm) {
+    @media (min-width: @screen-sm) {
+      .make-col(@column, @columns, @gutter);
+    }
+  }
+  & when (@screen = md) {
+    @media (min-width: @screen-md) {
+      .make-col(@column, @columns, @gutter);
+    }
+  }
+  & when (@screen = lg) {
+    @media (min-width: @screen-lg) {
+      .make-col(@column, @columns, @gutter);
+    }
+  }
+  & when (@screen = xl) {
+    @media (min-width: @screen-xl) {
+      .make-col(@column, @columns, @gutter);
+    }
+  }
+  & when (@screen = xxl) {
+    @media (min-width: @screen-xxl) {
+      .make-col(@column, @columns, @gutter);
+    }
+  }
+}
 
 
 
-// Генератор списка селекторов-модификаторов сетки и их индивидуальных свойств (отступы слева)
-//
-// Принимает:
-// @n:                                 - количество колонок
-// @screen:      xs                    - тип сетки [xs|sm|md|lg|xl|xxl]
+//------------------------------------------------------------------------------
+//  Генератор списка селекторов .col-[]-[] и их общих свойств (без ширин)
+//------------------------------------------------------------------------------
+//  Принимает:
+//  @screen:      xs          - тип сетки [xs|sm|md|lg|xl|xxl]
+//------------------------------------------------------------------------------
 
-// .make-offsets(@n, @screen, @i: 1) when (@i =< @n) {
-//   .col-@{screen}-offset-@{i} {
-//     margin-left: (@i * 100% / @n);
-//   }
-//   .make-offsets(@n, @screen, (@i + 1));
-// }
+.make-column-list-general-rules(@screen: xs) {
+  .column-list(@index) {
+    @item: ~".col-@{screen}-@{index}";
+    .column-list((@index + 1), @item);
+  }
+  .column-list(@index, @list) when (@index =< @grid-columns) {
+    @item: ~".col-@{screen}-@{index}";
+    .column-list((@index + 1), ~"@{list}, @{item}");
+  }
+  .column-list(@index, @list) when (@index > @grid-columns) {
+    @{list} {
+      flex: 0 0 100%;
+      width: 100%;
+      padding-left: (@grid-gutter-width / 2);
+      padding-right: (@grid-gutter-width / 2);
+    }
+  }
+  .column-list(1);
+}
+
+
+
+//------------------------------------------------------------------------------
+//  Генератор селекторов .col-[]-[] и их индивидуальных свойств (ширин)
+//------------------------------------------------------------------------------
+//  Принимает:
+//  @n:                       - количество колонок
+//  @screen:                  - тип сетки [xs|sm|md|lg|xl|xxl]
+//------------------------------------------------------------------------------
+
+.make-columns(@n, @screen, @i: 1) when (@i =< @n) {
+  .col-@{screen}-@{i} {
+    // .get-width(@i, @grid-columns); // Вернёт @width с шириной в процентах
+
+    // flex-basis: @width;
+    // max-width: @width;
+    .make-col(@i, @grid-columns, false)
+  }
+  .make-columns(@n, @screen, (@i + 1));
+}
+
+
+
+//------------------------------------------------------------------------------
+//  Генератор селекторов .col-[]-offset-[] и их индивидуальных свойств (margin-left)
+//------------------------------------------------------------------------------
+//  Принимает:
+//  @n:                       - количество колонок
+//  @screen:                  - тип сетки [xs|sm|md|lg|xl|xxl]
+//------------------------------------------------------------------------------
+
+.make-offsets(@n, @screen, @i: 1) when (@i =< @n) {
+  .col-@{screen}-offset-@{i} {
+    margin-left: (@i * 100% / @n);
+  }
+  .make-offsets(@n, @screen, (@i + 1));
+}
