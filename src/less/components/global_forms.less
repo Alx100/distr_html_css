@@ -53,6 +53,7 @@
     <label class="field__label" for="id2">Название</label>
     <input type="file" id="id2" class="field__file">
     <div class="field__description">Описание</div>
+    <span class="field__file-pad"></span>
   </div>
   <div class="field  field--radio">
     <label>
@@ -129,159 +130,9 @@ input[type="search"] {
   width: 100%;
 
   // Использование с классами модульной сетки
-  &:not(.row) {
+  // &:not(.row) {
     display: block;
-  }
-
-  // Модификатор для радиокнопок
-  &--radio {
-
-    & + & {
-      margin-top: (@type-spacer * -.5);
-    }
-    input {
-      vertical-align: middle;
-    }
-    .field__label {
-      margin-bottom: 0;
-    }
-  }
-
-  // Модификатор для радиокнопок (дополнение): своя радиокнопка
-  // &--radio {
-  //   position: relative;
-
-  //   input {
-  //     position: absolute;
-  //     z-index: -1;
-  //     opacity: 0;
-
-  //     &:checked + .field__label:before {
-  //       background-image: data-uri('image/svg+xml;charset=UTF-8', '../../img/icons_form/radiobutton--checked.svg');
-  //     }
-  //     &:checked:focus + .field__label:before {
-  //       .focus();
-  //     }
-  //   }
-  //   .field__label {
-  //     &:before {
-  //       content: '';
-  //       display: inline-block;
-  //       vertical-align: -.15em;
-  //       width: 1em;
-  //       height: 1em;
-  //       margin-right: .4em;
-  //       background-image: data-uri('image/svg+xml;charset=UTF-8', '../../img/icons_form/radiobutton.svg');
-  //       background-size: 1em 1em;
-  //       background-repeat: no-repeat;
-  //       background-position: center;
-  //       border-radius: 50%;
-  //     }
-  //   }
   // }
-
-  // Модификатор для чекбоксов
-  &--checkbox {
-    position: relative;
-
-    & + & {
-      margin-top: (@type-spacer * -.5);
-    }
-    input {
-      vertical-align: middle;
-    }
-    .field__label {
-      margin-bottom: 0;
-    }
-  }
-
-  // Модификатор для чекбоксов (дополнение): своя чекбокс
-  // &--checkbox {
-  //   position: relative;
-
-  //   input {
-  //     position: absolute;
-  //     z-index: -1;
-  //     opacity: 0;
-
-  //     &:checked + .field__label:before {
-  //       background-image: data-uri('image/svg+xml;charset=UTF-8', '../../img/icons_form/checkbox--checked.svg');
-  //     }
-  //     &:checked:focus + .field__label:before {
-  //       .focus();
-  //     }
-  //   }
-  //   .field__label {
-  //     &:before {
-  //       content: '';
-  //       display: inline-block;
-  //       vertical-align: -.15em;
-  //       width: 1em;
-  //       height: 1em;
-  //       margin-right: .4em;
-  //       background-image: data-uri('image/svg+xml;charset=UTF-8', '../../img/icons_form/checkbox.svg');
-  //       background-size: 1em 1em;
-  //       background-repeat: no-repeat;
-  //       background-position: center;
-  //     }
-  //   }
-  // }
-
-  // Модификаторы состояний
-  &--success {
-    .field__label {
-      color: @color__success;
-    }
-    .field__input-text,
-    .field__textarea {
-      background-image: data-uri('image/svg+xml;charset=UTF-8', '../../img/icons_form/check.svg');
-      background-size: 1.5rem 1.5rem;
-      background-repeat: no-repeat;
-      background-position: top .7rem right .6rem;
-      padding-right: 2.5rem;
-      border-color: @color__success;
-
-      &:focus {
-        .focus(success);
-      }
-    }
-    .field__select {
-      border-color: @color__success;
-      background-image: data-uri('image/svg+xml;charset=UTF-8', '../../img/icons_form/chevron-down--success.svg');
-
-      &:focus {
-        .focus(success);
-      }
-    }
-  }
-  &--error {
-    .field__label {
-      color: @color__danger;
-    }
-    .field__input-text,
-    .field__textarea {
-      background-image: data-uri('image/svg+xml;charset=UTF-8', '../../img/icons_form/close.svg');
-      background-size: 1.5rem 1.5rem;
-      background-repeat: no-repeat;
-      background-position: top .7rem right .6rem;
-      padding-right: 2.5rem;
-      border-color: @color__danger;
-
-      &:focus {
-        .focus(error);
-      }
-    }
-    .field__select {
-      border-color: @color__danger;
-      background-image: data-uri('image/svg+xml;charset=UTF-8', '../../img/icons_form/chevron-down--error.svg');
-
-      &:focus {
-        .focus(error);
-      }
-    }
-  }
-
-
 
   // Название поля
   &__label {
@@ -368,6 +219,11 @@ input[type="search"] {
     }
   }
 
+  // Файл: накладка для стилизации
+  &__file-pad {
+
+  }
+
   // Описание под полем
   &__description {
     display: block;
@@ -413,6 +269,158 @@ input[type="search"] {
   //     border-right: @field-border;
   //     border-top-left-radius: 0;
   //     border-bottom-left-radius: 0;
+  //   }
+  // }
+
+
+
+  // Модификатор для радиокнопок
+  &--radio {
+
+    & + & {
+      margin-top: (@type-spacer * -.5);
+    }
+    input {
+      vertical-align: middle;
+    }
+    .field__label {
+      margin-bottom: 0;
+    }
+  }
+
+  // Модификатор для чекбоксов
+  &--checkbox {
+    position: relative;
+
+    & + & {
+      margin-top: (@type-spacer * -.5);
+    }
+    input {
+      vertical-align: middle;
+    }
+    .field__label {
+      margin-bottom: 0;
+    }
+  }
+
+  // Модификатор для радиокнопок (дополнение): своя радиокнопка
+  // &--radio {
+  //   position: relative;
+
+  //   input {
+  //     position: absolute;
+  //     z-index: -1;
+  //     opacity: 0;
+
+  //     &:checked + .field__label:before {
+  //       background-image: data-uri('image/svg+xml;charset=UTF-8', '../../img/icons_form/radiobutton--checked.svg');
+  //     }
+  //     &:checked:focus + .field__label:before {
+  //       .focus();
+  //     }
+  //   }
+  //   .field__label {
+  //     &:before {
+  //       content: '';
+  //       display: inline-block;
+  //       vertical-align: -.15em;
+  //       width: 1em;
+  //       height: 1em;
+  //       margin-right: .4em;
+  //       background-image: data-uri('image/svg+xml;charset=UTF-8', '../../img/icons_form/radiobutton.svg');
+  //       background-size: 1em 1em;
+  //       background-repeat: no-repeat;
+  //       background-position: center;
+  //       border-radius: 50%;
+  //     }
+  //   }
+  // }
+
+  // Модификатор для чекбоксов (дополнение): своя чекбокс
+  // &--checkbox {
+  //   position: relative;
+
+  //   input {
+  //     position: absolute;
+  //     z-index: -1;
+  //     opacity: 0;
+
+  //     &:checked + .field__label:before {
+  //       background-image: data-uri('image/svg+xml;charset=UTF-8', '../../img/icons_form/checkbox--checked.svg');
+  //     }
+  //     &:checked:focus + .field__label:before {
+  //       .focus();
+  //     }
+  //   }
+  //   .field__label {
+  //     &:before {
+  //       content: '';
+  //       display: inline-block;
+  //       vertical-align: -.15em;
+  //       width: 1em;
+  //       height: 1em;
+  //       margin-right: .4em;
+  //       background-image: data-uri('image/svg+xml;charset=UTF-8', '../../img/icons_form/checkbox.svg');
+  //       background-size: 1em 1em;
+  //       background-repeat: no-repeat;
+  //       background-position: center;
+  //     }
+  //   }
+  // }
+
+  // Модификаторы состояния УСПЕХ
+  // &--success {
+  //   .field__label {
+  //     color: @color__success;
+  //   }
+  //   .field__input-text,
+  //   .field__textarea {
+  //     background-image: data-uri('image/svg+xml;charset=UTF-8', '../../img/icons_form/check.svg');
+  //     background-size: 1.5rem 1.5rem;
+  //     background-repeat: no-repeat;
+  //     background-position: top .7rem right .6rem;
+  //     padding-right: 2.5rem;
+  //     border-color: @color__success;
+
+  //     &:focus {
+  //       .focus(success);
+  //     }
+  //   }
+  //   .field__select {
+  //     border-color: @color__success;
+  //     background-image: data-uri('image/svg+xml;charset=UTF-8', '../../img/icons_form/chevron-down--success.svg');
+
+  //     &:focus {
+  //       .focus(success);
+  //     }
+  //   }
+  // }
+
+  // Модификаторы состояния ОШИБКА
+  // &--error {
+  //   .field__label {
+  //     color: @color__danger;
+  //   }
+  //   .field__input-text,
+  //   .field__textarea {
+  //     background-image: data-uri('image/svg+xml;charset=UTF-8', '../../img/icons_form/close.svg');
+  //     background-size: 1.5rem 1.5rem;
+  //     background-repeat: no-repeat;
+  //     background-position: top .7rem right .6rem;
+  //     padding-right: 2.5rem;
+  //     border-color: @color__danger;
+
+  //     &:focus {
+  //       .focus(error);
+  //     }
+  //   }
+  //   .field__select {
+  //     border-color: @color__danger;
+  //     background-image: data-uri('image/svg+xml;charset=UTF-8', '../../img/icons_form/chevron-down--error.svg');
+
+  //     &:focus {
+  //       .focus(error);
+  //     }
   //   }
   // }
 
