@@ -25,6 +25,35 @@
 <h1>Заголовок h1</h1>
 
 <div class="container-fluid">
+
+<form action="" class="form-inline">
+  <label class="field">
+    <div class="field__label">Название текстового поля</div>
+    <input type="text" class="field__input-text" placeholder="пиши тут">
+  </label>
+  <div class="field">
+    <label class="field__label" for="id">Название</label>
+    <input type="text" id="id" class="field__input-text" placeholder="пиши тут">
+  </div>
+  <div class="field">
+    <label class="field__label" for="ex1">Название</label>
+    <select class="field__select" id="ex1">
+        <option>1</option>
+        <option>2</option>
+      </select>
+  </div>
+  <div class="field  field--checkbox">
+    <label>
+      <input type="checkbox">
+      <div class="field__label">Название</div>
+    </label>
+  </div>
+  <div class="field">
+    <input class="btn" type="reset" value="Отправь меня">
+  </div>
+</form>
+
+
   <div class="row">
     <div class="col-xs-6">
       <a href="" class="btn  btn--block disabled">кнопка</a>
@@ -39,19 +68,31 @@
 
       <form action="">
 
-        <label class="field">
+        <label class="field  field--error">
           <div class="field__label">Название текстового поля</div>
           <input type="text" class="field__input-text" placeholder="пиши тут">
           <div class="field__description">Описание текстового поля</div>
         </label>
 
-        <div class="field">
+        <div class="field  field--error">
           <label class="field__label" for="id">Название</label>
-          <input type="text" id="id" class="field__input-text" placeholder="пиши тут">
+          <div class="field__internal-group">
+            <span class="field__addon">$</span>
+            <input type="text" id="id" class="field__input-text" placeholder="Подсказка">
+            <span class="field__addon">.00</span>
+          </div>
           <div class="field__description">Описание текстового поля</div>
         </div>
 
-        <div class="field">
+        <div class="field  row">
+          <label class="field__label  col-xs-3" for="id">Название</label>
+          <div class="col-xs-9">
+            <input type="text" id="id" class="field__input-text" placeholder="Подсказка">
+            <div class="field__description">Описание</div>
+          </div>
+        </div>
+
+        <div class="field  field--error">
           <label class="field__label" for="ex1">Название</label>
           <select class="field__select" id="ex1">
               <option>1</option>
@@ -60,38 +101,38 @@
           <div class="field__description">Описание поля</div>
         </div>
 
-        <div class="field">
+        <div class="field  field--error">
           <label class="field__label" for="ex1">Название</label>
           <textarea class="field__textarea" cols="30" rows="4"></textarea>
           <div class="field__description">Описание поля</div>
         </div>
 
-        <div class="field">
+        <div class="field  field--error">
           <label class="field__label" for="id2">Название</label>
           <input type="file" id="id2" class="field__file">
           <div class="field__description">Описание поля</div>
         </div>
 
-        <div class="field  field--radio">
+        <div class="field  field--radio  field--error">
           <label>
             <input type="radio">
             <div class="field__label">Название</div>
           </label>
         </div>
 
-        <label class="field  field--radio">
+        <label class="field  field--radio  field--error">
           <input type="radio">
           <div class="field__label">Название</div>
         </label>
 
-        <div class="field  field--checkbox">
+        <div class="field  field--checkbox  field--error">
           <label>
             <input type="checkbox">
             <div class="field__label">Название</div>
           </label>
         </div>
 
-        <div class="field  field--checkbox">
+        <div class="field  field--checkbox  field--error">
           <label>
             <input type="checkbox">
             <div class="field__label">Название</div>
@@ -204,7 +245,7 @@
         <td data-label="First Name">Mark Usa</td>
         <td data-label="Last Name">Ottomann</td>
       </tr>
-      <tr class="row-success">
+      <tr class="row-error">
         <td data-label="First Name">Jacob Bi</td>
         <td data-label="Last Name">ThorntonIIThorntonIIThorntonIIThorntonIIThorntonIIThornton IIThornton IIThornton IIThornton IIThornton IIThornton IIThornton IIThornton IIThornton IIThornton II</td>
       </tr>

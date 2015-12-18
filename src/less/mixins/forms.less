@@ -6,7 +6,20 @@
 //  Фокус
 //------------------------------------------------------------------------------
 
-.focus() {
-  outline: @field-focus-border-color auto 1px;
-  outline-offset: 0;
+.focus(@type: none) {
+  & when (@type = none) {
+    border-color: lighten(@color__primary, 13%);
+    outline: lighten(@color__primary, 13%) auto 1px;
+    outline-offset: 0;
+  }
+  & when (@type = success) {
+    border-color: @color__success;
+    outline: @color__success auto 1px;
+    outline-offset: 0;
+  }
+  & when (@type = error) {
+    border-color: lighten(@color__danger, 13%);
+    outline: lighten(@color__danger, 13%) auto 1px;
+    outline-offset: 0;
+  }
 }
